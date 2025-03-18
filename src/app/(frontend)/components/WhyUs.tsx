@@ -19,7 +19,7 @@ const WhyUs = () => {
 
         {/* Left Content - Fully Responsive */}
         <div className="max-w-lg mx-auto text-center md:text-left md:w-[55%] flex flex-col items-center md:items-start">
-          <div className="bg-black text-white px-6 py-2 rounded-full text-sm shadow-md mb-4 sm:text-xs sm:px-4">
+          <div className="bg-black text-white px-6 py-3 rounded-full text-sm shadow-md mb-4 sm:text-[14px] sm:px-8">
             Why Us
           </div>
 
@@ -75,7 +75,7 @@ const WhyUs = () => {
           </ul>
 
           {/* Button - Responsive size */}
-          <button className="mt-6 bg-[#0D94CD] text-white px-10 py-3 rounded-[50px] text-[15px] transition hover:bg-[#000000] cursor-pointer font-normal sm:px-6 sm:py-2 sm:text-[13px]">
+          <button className="mt-6 bg-[#0D94CD] text-white px-10 py-3 rounded-[50px] text-[15px] transition hover:bg-[#000000] cursor-pointer font-normal sm:px-10 sm:py-4 sm:text-[15px]">
             Get in Touch
           </button>
         </div>

@@ -20,6 +20,15 @@ body {
   width: 100%;
 }
 
+.bg-footer-gradient {
+  background: linear-gradient(
+    31.99deg,
+    rgba(207, 255, 108, 0.2) -42.61%,
+    rgba(181, 233, 255, 0.2) 49.72%,
+    rgba(153, 197, 62, 0.2) 133.83%
+  );
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .hero-image-container {
     margin-right: -71px !important;

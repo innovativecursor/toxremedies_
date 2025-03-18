@@ -1,6 +1,9 @@
+import ContactSection from '../components/ContactSection'
 import Hero from '../components/Hero'
 import Navbar from '../components/NavBar'
+import SectorsSection from '../components/SectorsSection'
 import WhyUs from '../components/WhyUs'
+import Footer from '../components/ui/Footer'
 import StatsNumber from '../components/ui/StatsNumber'
 
 export default function Home() {
@@ -12,6 +15,9 @@ export default function Home() {
         <WhyUs />
         <StatsNumber />
       </section>
+      <SectorsSection />
+      <ContactSection />
+      <Footer />
     </>
   )
 }
