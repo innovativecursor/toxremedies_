@@ -43,7 +43,7 @@ const WhyUs = () => {
                 className="flex-shrink-0"
               />
               <span className="text-[16px] text-left md:whitespace-nowrap sm:text-[14px]">
-                Unmatched Expertise "In Toxicology (PhD, DABT, and ERT credentials)"
+                {`Unmatched Expertise "In Toxicology (PhD, DABT, and ERT credentials)"`}
               </span>
             </li>
             <hr className="border-gray-300" />
