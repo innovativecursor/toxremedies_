@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa'
 import footerImage from '../../public/assets/toxremedies_logo.png'
 import logo from '../../public/assets/footerAssets/innocursor.svg'
+
 const Footer = () => {
   return (
     <div className="px-6 md:px-16 py-12">
@@ -18,7 +19,7 @@ const Footer = () => {
                 alt="ToxRemedies Logo"
                 className="w-44"
               />
-              <p className="text-sm leading-relaxed">
+              <p className="text-sm text-[#404040] font-light leading-relaxed">
                 Dr. Milind Deore is a seasoned toxicologist specializing in risk assessment across
                 pharmaceuticals, cosmetics, medical devices, and more. With a commitment to
                 advancing safety standards, he offers expert consulting services to ensure product
@@ -30,31 +31,43 @@ const Footer = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:col-span-2">
               {/* Quick Links */}
               <div className="space-y-4 md:ml-20">
-                <h4 className="font-semibold">QUICK LINKS</h4>
-                <ul className="space-y-3 text-sm">
-                  <li>Home</li>
-                  <li>About Me</li>
-                  <li>Expertise</li>
-                  <li>Services</li>
-                  <li>Contact</li>
+                <h4 className="font-medium text-[#181818] tracking-wider text-[16px]">
+                  QUICK LINKS
+                </h4>
+                <ul className="space-y-3 text-sm text-[#181818] font-light">
+                  <li className="hover:text-[#0D94CD] cursor-pointer">Home</li>
+                  <li className="hover:text-[#0D94CD] cursor-pointer">About Me</li>
+                  <li className="hover:text-[#0D94CD] cursor-pointer">Expertise</li>
+                  <li className="hover:text-[#0D94CD] cursor-pointer">Services</li>
+                  <li className="hover:text-[#0D94CD] cursor-pointer">Contact</li>
                 </ul>
               </div>
 
               {/* Contact Info */}
               <div className="space-y-4">
-                <h4 className="font-semibold">CONTACT INFO</h4>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-center gap-2">
-                    <FaEnvelope className="text-gray-600" size={16} />
-                    toxremedies@gmail.com
+                <h4 className="font-medium text-[#181818] tracking-wider text-[16px]">
+                  CONTACT INFO
+                </h4>
+                <ul className="space-y-3 text-sm font-light">
+                  <li className="flex items-center gap-3">
+                    <div className="p-1">
+                      <FaEnvelope className="text-[#0D94CD]" size={15} />
+                    </div>
+                    <span className="hover:text-[#0D94CD] cursor-pointer">
+                      toxremedies@gmail.com
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <FaPhoneAlt className="text-gray-600" size={16} />
-                    +91 99207 01520
+                  <li className="flex items-center gap-3">
+                    <div className="p-1">
+                      <FaPhoneAlt className="text-[#0D94CD]" size={15} />
+                    </div>
+                    <span className="hover:text-[#0D94CD] cursor-pointer">+91 99207 01520</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <FaMapMarkerAlt className="text-gray-600" size={16} />
-                    <span className="leading-tight">
+                  <li className="flex items-start gap-3">
+                    <div className="p-1">
+                      <FaMapMarkerAlt className="text-[#0D94CD]" size={15} />
+                    </div>
+                    <span className="leading-tight hover:text-[#0D94CD] cursor-pointer">
                       Tower A/53, Atlantis CHS, Kashish Park, LBS Road, Thane West, India 400604
                     </span>
                   </li>
@@ -63,10 +76,10 @@ const Footer = () => {
 
               {/* Legal */}
               <div className="space-y-4">
-                <h4 className="font-semibold">LEGAL</h4>
-                <ul className="space-y-3 text-sm">
-                  <li>Privacy Policy</li>
-                  <li>Terms & Conditions</li>
+                <h4 className="font-medium text-[16px] text-[#181818] tracking-wider">LEGAL</h4>
+                <ul className="space-y-3 text-sm font-light">
+                  <li className="hover:text-[#0D94CD] cursor-pointer">Privacy Policy</li>
+                  <li className="hover:text-[#0D94CD] cursor-pointer">Terms & Conditions</li>
                 </ul>
               </div>
             </div>
@@ -74,18 +87,20 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section - No Side Padding */}
-        <div className="border-t border-gray-300 w-full py-4 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 px-6 md:px-16">
+        <div className="border-t border-gray-300 font-light w-full py-4 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 px-6 md:px-16">
           <p>© 2025 Dr. Milind D. Deore. All rights reserved.</p>
 
           {/* LinkedIn Icon */}
-          <div className="bg-blue-500 text-white p-2 rounded-full">
+          <div className="bg-blue-500 text-white p-2 rounded-full hover:bg-[#0D94CD] cursor-pointer">
             <FaLinkedin size={18} />
           </div>
 
           {/* Designed by Innovative Cursor */}
           <p className="flex gap-1">
             Designed by <Image src={logo} width={20} height={20} alt="innovative cursor"></Image>{' '}
-            <span className="text-[#0D94CD] font-semibold">Innovative Cursor</span>
+            <span className="font-light hover:text-[#0D94CD] cursor-pointer">
+              Innovative Cursor
+            </span>
           </p>
         </div>
       </footer>
