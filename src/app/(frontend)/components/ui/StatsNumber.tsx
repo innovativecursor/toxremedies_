@@ -12,7 +12,7 @@ const StatsNumber = () => {
     if (inView) {
       setStartCount(true)
     } else {
-      setStartCount(false) // Reset animation when out of view
+      setStartCount(false)
     }
   }, [inView])
 
@@ -51,7 +51,8 @@ const StatsNumber = () => {
         ].map((stat, index) => (
           <div
             key={index}
-            className={`relative flex items-center justify-center px-4 ${stat.borderRight ? 'border-r-2 border-gray-300' : ''}`}
+            className={`relative flex items-center justify-center px-4 
+              ${stat.borderRight ? 'lg:border-r-2 lg:border-gray-300' : ''}`}
           >
             <span className={`text-6xl md:text-9xl font-light ${stat.color} opacity-40`}>
               {startCount ? (
@@ -67,7 +68,8 @@ const StatsNumber = () => {
               +
             </span>
             <span
-              className={`absolute text-lg font-medium text-[#272727] ${stat.adjustLeft ? 'left-6 lg:left-[100px]' : 'left-9 lg:left-[37px]'}`}
+              className={`absolute text-xs sm:text-sm md:text-base lg:text-lg font-normal text-[#272727] 
+                ${stat.adjustLeft ? 'left-6 lg:left-[100px]' : 'left-9 lg:left-[37px]'}`}
             >
               {stat.text}
             </span>
