@@ -15,6 +15,12 @@ export const submitContactForm = async (formData: {
     })
 
     if (!response.ok) {
+      const errorData = await response.json()
+
+      if (errorData.errors?.some((err: any) => err.message.includes('duplicate'))) {
+        throw new Error('This email or phone number has already been used.')
+      }
+
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
 

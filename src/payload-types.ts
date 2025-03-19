@@ -158,6 +158,7 @@ export interface ContactUs {
   id: number;
   name: string;
   email: string;
+  phone: string;
   message: string;
   createdAt: string;
   updatedAt: string;
@@ -263,6 +264,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ContactUsSelect<T extends boolean = true> {
   name?: T;
   email?: T;
+  phone?: T;
   message?: T;
   createdAt?: T;
   updatedAt?: T;

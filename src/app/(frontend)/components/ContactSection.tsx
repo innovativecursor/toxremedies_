@@ -29,14 +29,21 @@ const ContactSection = () => {
 
     try {
       await submitContactForm(formData)
+
       showToast('Message sent successfully!', 'success')
+
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' }) // Reset form
     } catch (err) {
-      showToast('Failed to send message. Please try again later.', 'error')
+      if ((err as Error).message.includes('already been used')) {
+        showToast('This email or phone number is already registered!', 'error')
+      } else {
+        showToast('Failed to send message. Please try again later.', 'error')
+      }
     } finally {
       setLoading(false)
     }
   }
+
   return (
     <div className="flex justify-center w-full px-4 sm:px-6 md:px-8">
       <section className="max-w-7xl py-16 sm:py-20">
