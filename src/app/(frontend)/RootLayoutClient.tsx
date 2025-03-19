@@ -3,6 +3,7 @@
 import React from 'react'
 import './styles.css'
 import { Poppins, Albert_Sans } from 'next/font/google'
+import Toaster from './components/ui/Toaster'
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -20,6 +21,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${albertSans.variable}`}>
+        <Toaster />
         <main>{children}</main>
       </body>
     </html>

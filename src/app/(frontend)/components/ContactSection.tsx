@@ -6,6 +6,7 @@ import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa'
 
 import contact from '../public/assets/contactAssets/contact_image.png'
 import { submitContactForm } from '../utils/api'
+import { showToast } from './ui/Toaster'
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,6 @@ const ContactSection = () => {
   })
 
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -27,15 +26,13 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setSuccess(false)
-    setError('')
 
     try {
       await submitContactForm(formData)
-      setSuccess(true)
+      showToast('Message sent successfully!', 'success')
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' }) // Reset form
     } catch (err) {
-      setError('Failed to send message. Please try again later.')
+      showToast('Failed to send message. Please try again later.', 'error')
     } finally {
       setLoading(false)
     }
@@ -105,8 +102,6 @@ const ContactSection = () => {
               >
                 {loading ? 'Sending...' : 'Send Message'}
               </button>
-              {success && <p className="text-green-600 text-sm mt-2">Message sent successfully!</p>}
-              {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
             </form>
 
             {/* Contact Info Section */}
