@@ -6,7 +6,7 @@ import { IoMdClose, IoMdMenu } from 'react-icons/io'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import logo from '../../public/assets/toxremedies_logo.png'
+import logo from '../../public/assets/tox_remedies_nav.png'
 
 const NavBarOthers = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,16 +22,22 @@ const NavBarOthers = () => {
 
   return (
     <nav
-      className="w-full shadow-md"
+      className="w-full  shadow-md"
       style={{
         background:
           'linear-gradient(260.13deg, #FFFFFF -14.7%, #F8FFEB 20.11%, #D9F4FF 46.52%, #F4FFDC 102.3%)',
       }}
     >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="container max-w-7xl mx-auto px-6 py-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <Image width={200} height={200} src={logo} alt="Logo" className="w-full h-15" />
+        <Link href="/" className="flex items-center space-x-2 cursor-pointer">
+          <Image
+            width={200}
+            height={200}
+            src={logo}
+            alt="Logo"
+            className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[290px] h-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -63,10 +69,7 @@ const NavBarOthers = () => {
 
       {/* Overlay for Mobile Menu */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setIsOpen(false)}
-        ></div>
+        <div className="fixed inset-0 bg-opacity-50 z-40" onClick={() => setIsOpen(false)}></div>
       )}
 
       {/* Mobile Navigation Menu */}
