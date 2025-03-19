@@ -20,8 +20,6 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
- 
-    
   },
   collections: [Users, Media, ContactUs],
   editor: lexicalEditor(),
