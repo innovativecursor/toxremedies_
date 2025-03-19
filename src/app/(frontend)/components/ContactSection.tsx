@@ -1,12 +1,45 @@
 'use client'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa'
 
 import contact from '../public/assets/contactAssets/contact_image.png'
+import { submitContactForm } from '../utils/api'
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  })
+
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setSuccess(false)
+    setError('')
+
+    try {
+      await submitContactForm(formData)
+      setSuccess(true)
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' }) // Reset form
+    } catch (err) {
+      setError('Failed to send message. Please try again later.')
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <div className="flex justify-center w-full px-4 sm:px-6 md:px-8">
       <section className="max-w-7xl py-16 sm:py-20">
@@ -14,38 +47,67 @@ const ContactSection = () => {
           {/* Left Side - Contact Form & Info */}
           <div className="flex-1 lg:pr-6">
             {/* Contact Form */}
-            <div className="bg-white shadow-xl rounded-[36px] p-6 sm:p-8 md:p-10 w-full h-auto lg:h-[565px]">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white shadow-xl rounded-[36px] p-6 sm:p-8 md:p-10 w-full h-auto lg:h-[565px]"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input
                   type="text"
                   placeholder="Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="py-3 px-4 rounded-lg bg-[#EFFBFF] w-full placeholder-[#494949] placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-[#0D94CD] transition-all duration-300 ease-in-out"
                 />
                 <input
                   type="text"
+                  name="phone"
                   placeholder="Phone"
+                  value={formData.phone}
+                  required
+                  onChange={handleChange}
                   className="py-3 px-4 rounded-lg bg-[#EFFBFF] w-full placeholder-[#494949] placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-[#0D94CD] transition-all duration-300 ease-in-out"
                 />
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   placeholder="Email"
                   className="py-3 px-4 rounded-lg bg-[#EFFBFF] w-full placeholder-[#494949] placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-[#0D94CD] transition-all duration-300 ease-in-out"
                 />
                 <input
                   type="text"
                   placeholder="Subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
                   className="py-3 px-4 rounded-lg bg-[#EFFBFF] w-full placeholder-[#494949] placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-[#0D94CD] transition-all duration-300 ease-in-out"
                 />
               </div>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Message..."
+                required
                 className="py-3 px-4 rounded-lg bg-[#EFFBFF] w-full mt-6 h-[250px] placeholder-[#494949] placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-[#0D94CD] transition-all duration-300 ease-in-out resize-none"
               />
 
-              <button className="bg-[#0D94CD] text-[13px] text-white py-3 px-8 rounded-[35px] mt-8 w-full md:w-auto transition-all duration-300 ease-in-out hover:bg-[#000000]">
-                Send Message
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-[#0D94CD] text-[13px] text-white py-3 px-8 rounded-[35px] mt-8 w-full md:w-auto transition-all duration-300 ease-in-out hover:bg-[#000000]"
+              >
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
-            </div>
+              {success && <p className="text-green-600 text-sm mt-2">Message sent successfully!</p>}
+              {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+            </form>
 
             {/* Contact Info Section */}
             <div className="bg-[#0D94CD] text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-4 p-6 rounded-lg mt-8 w-full h-auto md:h-[160px]">
