@@ -49,9 +49,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 flex justify-between items-center">
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8 text-[#181818] text-[15px] font-normal">
-          {['Home', 'About Us', 'Expertise', 'Services', 'Contact Us'].map((item, index) => (
+          {[
+            { name: 'Home', link: '/' },
+            { name: 'About Us', link: '/about-us' },
+            { name: 'Expertise', link: '/expertise' },
+            { name: 'Services', link: '/services' },
+            { name: 'Contact Us', link: '/contact' },
+          ].map((item, index) => (
             <li key={index} className="hover:text-[#0D94CD] transition-colors">
-              <Link href="#">{item}</Link>
+              <Link href={item.link}>{item.name}</Link>
             </li>
           ))}
         </ul>
@@ -95,7 +101,13 @@ const Navbar = () => {
           exit="hidden"
           className="flex flex-col space-y-6 text-white font-medium"
         >
-          {['Home', 'About Us', 'Expertise', 'Services', 'Contact Us'].map((item, index) => (
+          {[
+            { name: 'Home', link: '/' },
+            { name: 'About Us', link: '/about-us' },
+            { name: 'Expertise', link: '/expertise' },
+            { name: 'Services', link: '/services' },
+            { name: 'Contact Us', link: '/contact' },
+          ].map((item, index) => (
             <motion.li
               key={index}
               variants={navItem}
@@ -103,7 +115,7 @@ const Navbar = () => {
               className="cursor-pointer"
               onClick={() => setIsOpen(false)}
             >
-              <Link href="#">{item}</Link>
+              <Link href={item.link}>{item.name}</Link>
             </motion.li>
           ))}
         </motion.ul>

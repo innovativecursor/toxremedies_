@@ -14,17 +14,14 @@ export const submitContactForm = async (formData: {
       body: JSON.stringify(formData),
     })
 
+    const data = await response.json()
+
     if (!response.ok) {
-      const errorData = await response.json()
-
-      if (errorData.errors?.some((err: any) => err.message.includes('duplicate'))) {
-        throw new Error('This email or phone number has already been used.')
-      }
-
-      throw new Error(`HTTP error! Status: ${response.status}`)
+      console.error('Backend error response:', data)
+      throw new Error(data.message || `HTTP error! Status: ${response.status}`)
     }
 
-    return await response.json()
+    return data
   } catch (error) {
     console.error('Error submitting contact form:', error)
     throw error

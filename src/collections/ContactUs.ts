@@ -21,14 +21,14 @@ export const ContactUs: CollectionConfig = {
       type: 'email',
       label: 'Email Address',
       required: true,
-      unique: true, // Prevents duplicate emails
+      unique: true, // Ensures uniqueness in database
     },
     {
       name: 'phone',
       type: 'text',
       label: 'Phone Number',
       required: true,
-      unique: true, // Prevents duplicate phone numbers
+      unique: true, // Ensures uniqueness in database
     },
     {
       name: 'message',
