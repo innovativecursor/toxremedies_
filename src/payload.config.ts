@@ -22,6 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
+      titleSuffix: ' - ToxRemedies',
       icons: [
         {
           rel: 'icon',

@@ -6,19 +6,22 @@ import aboutus2 from '../../public/assets/aboutusAssets/about_us_image_2.png'
 
 const AboutToxRemedies = () => {
   return (
-    <section className="container max-w-7xl mx-auto py-16 sm:py-20">
+    <section className="container max-w-7xl mx-auto py-16 sm:py-20 px-6 sm:px-10">
       {/* Title */}
-      <div className="mb-6">
-        <span className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
-          About Us
-        </span>
-      </div>
+
       {/* Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <div>
-          <h2 className="text-4xl font-bold mb-4 text-gray-900">About ToxRemedies</h2>
-          <p className="text-gray-700 leading-relaxed">
+          <div className="mb-7">
+            <span className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
+              About Us
+            </span>
+          </div>
+          <h2 className="text-[32px] sm:text-[40px] md:text-[50px] font-medium tracking-wider mb-4 text-[#181818]">
+            About ToxRemedies
+          </h2>
+          <p className="text-[#272727] font-light tracking-wide leading-7 text-[14px] sm:text-[15px]">
             ToxRemedies is a specialized Toxicology Consultancy founded by Dr Milind Deore who has
             over 35 years of experience and expertise in Toxicology field. He is American board
             certified toxicologist (DABT) and is also a European Registered Toxicologist (ERT).
@@ -35,38 +38,39 @@ const AboutToxRemedies = () => {
         </div>
 
         {/* Right Image */}
-        <div className="">
+        <div className="flex ">
           <Image
-            src={aboutus1} // Replace with actual path
+            src={aboutus1}
             alt="Toxicologist"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full max-w-[450px] sm:max-w-[800px] h-auto"
           />
         </div>
       </div>
 
       {/* Second Row */}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-2">
         {/* Left Image */}
-        <div>
+        <div className="flex">
           <Image
-            src={aboutus2} // Replace with actual path
+            src={aboutus2}
             alt="Lab Testing"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full max-w-[450px] sm:max-w-[800px] h-auto"
           />
         </div>
 
         {/* Right Content - List Items */}
-        <div>
-          <p className="text-gray-700">
+        <div className="relative bottom-[10px]">
+          <p className="text-[#272727] font-light tracking-wide leading-7 text-[14px] sm:text-[15px]">
             With knowledge and experience about requirements from global regulatory authorities
             including USFDA, EMA, MDR, European Cosmetic Directive, ANVISA, China CSAR, TGA, India
-            DCGI & BIS and other regulatory bodies, ToxRemedies offers:
+            DCGI & BIS sand other regulatory bodies, ToxRemedies offers:
           </p>
-          <ul className="space-y-3">
+          <ul className="space-y-5 mt-6">
             {[
               'End to End Toxicology strategies for product development',
               'Ingredient hazard and safety/risk assessments',
@@ -76,7 +80,10 @@ const AboutToxRemedies = () => {
               'Digital tools for Toxicology',
               'Setting efficient Toxicology risk assessment teams in India',
             ].map((item, index) => (
-              <li key={index} className="flex items-center text-gray-900">
+              <li
+                key={index}
+                className="flex items-center text-gray-900 text-[14px] sm:text-[15px]"
+              >
                 <FaCheckCircle className="text-blue-600 w-5 h-5 mr-3" />
                 {item}
               </li>

@@ -22,7 +22,7 @@ const NavBarOthers = () => {
 
   return (
     <nav
-      className="w-full  shadow-md"
+      className="w-full shadow-md"
       style={{
         background:
           'linear-gradient(260.13deg, #FFFFFF -14.7%, #F8FFEB 20.11%, #D9F4FF 46.52%, #F4FFDC 102.3%)',
@@ -40,8 +40,8 @@ const NavBarOthers = () => {
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-8 text-[#181818] text-[15px] font-normal">
+        {/* Desktop Navigation (Hidden in Tablet) */}
+        <ul className="hidden lg:flex space-x-8 text-[#181818] text-[15px] font-normal">
           {navItems.map((item, index) => (
             <li key={index}>
               <Link
@@ -57,12 +57,31 @@ const NavBarOthers = () => {
         </ul>
 
         {/* CTA Button (Desktop) */}
-        <button className="hidden md:block bg-[#0D94CD] text-white px-6 py-2 rounded-full hover:bg-[#0978a3] transition">
+        <button className="hidden lg:block bg-[#0D94CD] text-white px-6 py-2 rounded-full hover:bg-[#0978a3] transition">
           Get a Consultation
         </button>
 
+        {/* Tablet Navigation Slider */}
+        <div className="hidden md:flex lg:hidden w-full overflow-hidden">
+          <motion.div
+            className="flex space-x-6 w-max"
+            drag="x"
+            dragConstraints={{ left: -200, right: 0 }}
+          >
+            {navItems.map((item, index) => (
+              <Link
+                key={index}
+                href={item.link}
+                className="text-[#181818] text-[15px] font-normal px-4"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={() => setIsOpen(true)}>
+        <button className="lg:hidden md:hidden" onClick={() => setIsOpen(true)}>
           <IoMdMenu size={32} className="text-[#0D94CD]" />
         </button>
       </div>
