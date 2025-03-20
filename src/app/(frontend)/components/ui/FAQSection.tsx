@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import doctorImage from '../../public/assets/faqAssets/faq_image.png' // Update the path if needed
+import { GoPlus } from 'react-icons/go'
+import { AiOutlineMinus } from 'react-icons/ai'
 
 const faqs = [
   {
@@ -101,7 +103,9 @@ const FAQSection = () => {
                 onClick={() => toggleFAQ(index)}
               >
                 {/* Plus/Minus Sign on Left */}
-                <span className="text-xl font-bold">{openIndex === index ? '−' : '+'}</span>
+                <span className="text-xl font-bold">
+                  {openIndex === index ? <AiOutlineMinus /> : <GoPlus />}
+                </span>
                 {faq.question}
               </button>
 
