@@ -16,7 +16,7 @@ const InfoCard: React.FC<{ title: string; content: string }> = ({ title, content
 
 const MissionVisionSection = () => {
   return (
-    <section className="bg-gradient-to-br from-white/40 via-[#EBF9FF]/40 to-[#EBF9FF]/0 px-20 py-20">
+    <section className="bg-gradient-to-br from-white/40 via-[#EBF9FF]/40 to-[#EBF9FF]/0 px-20 py-30">
       <div className="bg-gradient-to-r container max-w-7xl from-[#CAEFFF] to-[#FFFFFF] rounded-4xl mx-auto flex flex-col sm:flex-row border border-[#97E0FF]">
         <InfoCard
           title="MISSION"

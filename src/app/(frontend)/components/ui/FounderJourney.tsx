@@ -16,13 +16,13 @@ const FounderJourney: React.FC = () => {
           <div>
             {/* Story Tag */}
             <div className="mb-4">
-              <span className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-black text-white px-8 py-2 rounded-full text-sm font-light tracking-wider">
                 Story
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="text-[28px] sm:text-[36px] md:text-[42px] font-semibold text-[#181818]">
+            <h2 className="text-[28px] sm:text-[36px] md:text-[42px] font-medium tracking-wide text-[#181818]">
               Our Founder’s Journey – Dr. Milind Deore
             </h2>
 
@@ -51,7 +51,7 @@ const FounderJourney: React.FC = () => {
               alt="Dr. Milind Deore"
               width={500}
               height={500}
-              className="rounded-lg shadow-lg w-full max-w-[450px] sm:max-w-[600px] h-auto"
+              className=" w-full max-w-[450px] sm:max-w-[600px] h-auto"
             />
           </div>
         </div>
@@ -65,7 +65,7 @@ const FounderJourney: React.FC = () => {
               alt="Award Ceremony"
               width={500}
               height={500}
-              className="rounded-lg shadow-lg w-full max-w-[450px] sm:max-w-[600px] h-auto"
+              className="w-full max-w-[450px] sm:max-w-[600px] h-auto"
             />
             {/* CTA Link */}
             <p className="mt-6 text-[#272727] text-[16px] font-light tracking-wide">
@@ -78,17 +78,16 @@ const FounderJourney: React.FC = () => {
 
           {/* Right Content */}
           <div>
-            <p className="text-[#272727] font-light tracking-wide leading-7 text-[14px] sm:text-[15px]">
+            <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px]">
               Driven by the mission to provide scientifically sound and regulatory-compliant
               toxicology solutions, Dr. Deore founded ToxRemedies. His deep expertise spans
               pharmaceuticals, cosmetics, medical devices, food, and general chemicals, making him a
               trusted authority in global toxicology regulations (US FDA, EU Cosmetics, EMA, ANVISA,
-              China CSAR, ASEAN, MDR, TGA).
-            </p>
-            <p className="text-[#272727] font-light tracking-wide leading-7 text-[14px] sm:text-[15px] mt-4">
-              With 90+ scientific publications, multiple industry awards, and international
-              collaborations, Dr. Deore continues to lead the field, helping businesses ensure
-              product safety, compliance, and innovation.
+              China CSAR, ASEAN, MDR, TGA). With 90+ scientific publications, multiple industry
+              awards, and international collaborations, Dr. Deore continues to lead the field,
+              helping businesses ensure product safety, compliance, and innovation. His legacy is
+              built on science, integrity, and a commitment to advancing toxicology for a safer
+              world.
             </p>
           </div>
         </div>
