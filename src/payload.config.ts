@@ -11,6 +11,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import ContactUs from './collections/ContactUs'
 import icon from '../src/app/(frontend)/public/favicon.ico'
+import FounderImages from './collections/FounderImage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, ContactUs],
+  collections: [Users, Media, ContactUs, FounderImages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
