@@ -19,7 +19,7 @@ const AboutContactDoctor = () => {
         </div>
 
         {/* Blurry Merging Effect */}
-        <div className="absolute w-[180px] h-full md:h-[400px] top-0 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-[42%] bg-gradient-to-r from-[#deeaf1] via-[#deeaf1]/60 to-transparent blur opacity-95 pointer-events-none z-10"></div>
+        <div className="absolute w-[180px] h-0 md:h-[400px] top-0 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-[42%] bg-gradient-to-r from-[#deeaf1] via-[#deeaf1]/60 to-transparent blur opacity-95 pointer-events-none z-10"></div>
 
         {/* Right Side - Image as Background */}
         <div
