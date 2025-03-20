@@ -1,5 +1,7 @@
+import AboutContactDoctor from '../components/ui/AboutContactDoctor'
 import AboutHome from '../components/ui/AboutHome'
 import AboutToxRemedies from '../components/ui/AboutToxremedies'
+import FAQSection from '../components/ui/FAQSection'
 import FeaturedPublications from '../components/ui/FeaturedPublications'
 import Footer from '../components/ui/Footer'
 import FounderJourney from '../components/ui/FounderJourney'
@@ -19,6 +21,8 @@ export default function AboutUsPage() {
       <FounderJourney />
       <FeaturedPublications />
       <Testimonials />
+      <FAQSection />
+      <AboutContactDoctor />
       <Footer />
     </>
   )
