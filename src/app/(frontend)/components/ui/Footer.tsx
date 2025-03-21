@@ -87,7 +87,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section - No Side Padding */}
-        <div className="border-t border-gray-300 font-light w-full py-4 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 px-6 md:px-16">
+        <div className="border-t border-gray-300 font-light w-full py-4 flex flex-col md:flex-row items-center justify-center md:justify-between text-sm text-gray-600 px-4 sm:px-8 md:px-16 gap-4 md:gap-0 text-center md:text-left">
           <p>© 2025 Dr. Milind D. Deore. All rights reserved.</p>
 
           {/* LinkedIn Icon */}
@@ -96,8 +96,9 @@ const Footer = () => {
           </div>
 
           {/* Designed by Innovative Cursor */}
-          <p className="flex gap-1">
-            Designed by <Image src={logo} width={20} height={20} alt="innovative cursor"></Image>{' '}
+          <p className="flex items-center gap-2">
+            Designed by
+            <Image src={logo} width={20} height={20} alt="innovative cursor" />
             <span className="font-light hover:text-[#0D94CD] cursor-pointer">
               Innovative Cursor
             </span>
