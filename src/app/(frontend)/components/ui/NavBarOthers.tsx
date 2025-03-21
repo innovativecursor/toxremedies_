@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { IoMdClose, IoMdMenu } from 'react-icons/io'
+import { IoMdMenu } from 'react-icons/io'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import logo from '../../public/assets/tox_remedies_nav.png'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 const NavBarOthers = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -101,7 +102,7 @@ const NavBarOthers = () => {
       >
         {/* Close Button */}
         <button className="self-end mb-6" onClick={() => setIsOpen(false)}>
-          <IoMdClose size={32} className="text-[#0D94CD]" />
+          <GiHamburgerMenu size={32} className="text-blue-600" />
         </button>
 
         {/* Mobile Navigation Links */}
