@@ -37,7 +37,7 @@ const expertiseData = [
     imageSrc: expertise4.src,
   },
   {
-    title: 'Occupational & Environmental Safety',
+    title: 'Occupational Safety, Packaging safety  and Environmental Safety',
     description:
       'Derivation of Occupational Exposure Limits (OELs) of chemicals at manufacturing plants. Environmental Risk Assessment (ERA) for chemicals.',
     imageSrc: expertise5.src,
