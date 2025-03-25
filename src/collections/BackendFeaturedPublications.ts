@@ -10,6 +10,7 @@ export const BackendFeaturedPublications: CollectionConfig = {
     useAsTitle: 'title',
   },
   access: {
+    create: () => true,
     read: () => true,
   },
   fields: [
