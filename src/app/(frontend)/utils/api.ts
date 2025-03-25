@@ -27,3 +27,26 @@ export const submitContactForm = async (formData: {
     throw error
   }
 }
+
+export const fetchFeaturedPublications = async () => {
+  try {
+    const response = await fetch(`/api/backend-featured-publications`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      console.error('Backend error response:', data)
+      throw new Error(data.message || `HTTP error! Status: ${response.status}`)
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error fetching publications:', error)
+    throw error
+  }
+}
