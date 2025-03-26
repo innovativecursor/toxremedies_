@@ -6,21 +6,29 @@ import { motion, AnimatePresence } from 'framer-motion'
 import tickIcon from '../../public/assets/aboutusAssets/tick_image.png'
 import { fetchServices } from '../../utils/api'
 
+// Define the type for services
+interface Service {
+  title: string
+  image: { url: string }
+  description: { point: string }[]
+}
+
 const ServicesSection = () => {
-  const [services, setServices] = useState([])
-  const [selectedService, setSelectedService] = useState(null)
+  const [services, setServices] = useState<Service[]>([]) // Specify type for services array
+  const [selectedService, setSelectedService] = useState<Service | null>(null) // Ensure selectedService has correct type
 
   useEffect(() => {
     const loadServices = async () => {
       try {
         const data = await fetchServices()
-        setServices(data.docs) // Ensure the correct key (depends on your API response)
+        setServices(data.docs as Service[]) // Type assertion to enforce correct structure
       } catch (error) {
         console.error('Error fetching services:', error)
       }
     }
     loadServices()
   }, [])
+
   return (
     <section className="py-10 max-w-7xl mx-auto px-4 md:px-6">
       <div className="text-left mb-10">

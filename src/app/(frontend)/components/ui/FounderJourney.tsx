@@ -12,15 +12,23 @@ interface FounderImage {
   alt: string
 }
 
+interface ApiResponse {
+  docs: { images: FounderImage[] }[]
+}
+
 const FounderJourney: React.FC = () => {
   const [awardImages, setAwardImages] = useState<FounderImage[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const getAwardImages = async () => {
-      const awardData = await fetchFounderImages()
-      if (awardData?.docs) {
-        setAwardImages(awardData.docs.flatMap((doc) => doc.images))
+      try {
+        const awardData: ApiResponse = await fetchFounderImages()
+        if (awardData?.docs) {
+          setAwardImages(awardData.docs.flatMap((doc) => doc.images))
+        }
+      } catch (error) {
+        console.error('Error fetching award images:', error)
       }
     }
     getAwardImages()
