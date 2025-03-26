@@ -29,7 +29,7 @@ const Contact = () => {
     <section className="max-w-7xl mx-auto px-4 py-10 md:px-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <motion.div
-          className="bg-white p-6 sm:p-10 rounded-xl shadow-lg w-full"
+          className="bg-white p-6 sm:p-10 rounded-xl shadow-xl w-full"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
         >
