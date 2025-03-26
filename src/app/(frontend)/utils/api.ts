@@ -50,3 +50,49 @@ export const fetchFeaturedPublications = async () => {
     throw error
   }
 }
+
+export const fetchFounderImages = async () => {
+  try {
+    const response = await fetch(`/api/founder-images`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      console.error('Backend error response:', data)
+      throw new Error(data.message || `HTTP error! Status: ${response.status}`)
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error fetching founder images:', error)
+    throw error
+  }
+}
+
+export const fetchServices = async () => {
+  try {
+    const response = await fetch(`/api/services`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      console.error('Backend error response:', data)
+      throw new Error(data.message || `HTTP error! Status: ${response.status}`)
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error fetching services:', error)
+    throw error
+  }
+}

@@ -9,6 +9,10 @@ export const FounderImages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  access: {
+    create: () => true,
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',

@@ -1,9 +1,40 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import founderImage from '../../public/assets/aboutusAssets/founder_image_1.png' // Replace with actual image path
-import awardImage from '../../public/assets/aboutusAssets/founder_image_2.png' // Replace with actual image path
+import founderImage from '../../public/assets/aboutusAssets/founder_image_1.png'
+import { motion, AnimatePresence } from 'framer-motion'
+import { fetchFounderImages } from '../../utils/api'
+
+interface FounderImage {
+  id: number
+  image: { url: string }
+  alt: string
+}
 
 const FounderJourney: React.FC = () => {
+  const [awardImages, setAwardImages] = useState<FounderImage[]>([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const getAwardImages = async () => {
+      const awardData = await fetchFounderImages()
+      if (awardData?.docs) {
+        setAwardImages(awardData.docs.flatMap((doc) => doc.images))
+      }
+    }
+    getAwardImages()
+  }, [])
+
+  useEffect(() => {
+    if (awardImages.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % awardImages.length)
+      }, 3000) // Auto-slide every 3 seconds
+      return () => clearInterval(interval)
+    }
+  }, [awardImages])
+
   return (
     <div
       style={{
@@ -14,25 +45,22 @@ const FounderJourney: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Left Content */}
           <div>
-            {/* Story Tag */}
             <div className="mb-4">
               <span className="bg-black text-white px-8 py-2 rounded-full text-sm font-light tracking-wider">
                 Story
               </span>
             </div>
 
-            {/* Heading */}
             <h2 className="text-[28px] sm:text-[36px] md:text-[42px] font-medium tracking-wide text-[#181818]">
               Our Founder’s Journey – Dr. Milind Deore
             </h2>
 
-            {/* Description */}
             <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px] mt-4">
               Dr. Milind Deore, a veterinarian with a Ph.D. in Pharmacology & Toxicology, is a
               globally recognized expert with 35+ years of experience in academia and the
               pharmaceutical industry. Apart from Ph.D. in Toxicology, he is also Diplomate of
               American Board of Toxicology (DABT) since 2010 and also a European Registered
-              Toxicologist (ERT).  His journey began with a passion for science and safety, leading
+              Toxicologist (ERT). His journey began with a passion for science and safety, leading
               him to work with industry giants like Ranbaxy, Johnson & Johnson, and Kenvue, where he
               played a key role in global safety assessments, regulatory compliance, and
               toxicological risk evaluations. Prior, he was in academics for over 15 years where he
@@ -44,31 +72,48 @@ const FounderJourney: React.FC = () => {
             </p>
           </div>
 
-          {/* Right Image */}
-          <div className="flex ">
+          {/* Right Image - Static Image */}
+          <div>
             <Image
               src={founderImage}
               alt="Dr. Milind Deore"
               width={500}
               height={500}
-              className=" w-full max-w-[450px] sm:max-w-[600px] h-auto"
+              className="w-full max-w-[450px] sm:max-w-[600px] h-auto"
             />
           </div>
         </div>
 
-        {/* Second Row */}
+        {/* Second Row - Award Image Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mt-10">
-          {/* Left Image */}
-          <div className="flex flex-col">
-            <Image
-              src={awardImage}
-              alt="Award Ceremony"
-              width={500}
-              height={500}
-              className="w-full max-w-[450px] sm:max-w-[600px] h-auto"
-            />
-            {/* CTA Link */}
-            <p className="mt-6 text-[#272727] text-[16px] font-light tracking-wide">
+          <div className="flex flex-col w-full max-w-[450px] sm:max-w-[600px] overflow-hidden">
+            <div className="relative w-full h-[320px] rounded-3xl">
+              {' '}
+              {/* Set a fixed height */}
+              <AnimatePresence>
+                {awardImages.length > 0 && (
+                  <motion.div
+                    key={awardImages[currentIndex]?.image.url}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                    className="absolute w-full h-full rounded-3xl"
+                  >
+                    <Image
+                      src={awardImages[currentIndex].image.url}
+                      alt="Award Ceremony"
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-cover rounded-3xl" /* Ensure consistent image display */
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Ensure the text is below the image */}
+            <p className="mt-4 text-[#272727] text-[16px] font-light tracking-wide">
               Want to learn more?{' '}
               <a href="#" className="text-[#0D94CD] hover:text-blue-600">
                 Connect with us at ToxRemedies!
@@ -76,7 +121,6 @@ const FounderJourney: React.FC = () => {
             </p>
           </div>
 
-          {/* Right Content */}
           <div>
             <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px]">
               Driven by the mission to provide scientifically sound and regulatory-compliant
