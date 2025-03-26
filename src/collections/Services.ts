@@ -31,7 +31,20 @@ export const Services: CollectionConfig = {
           name: 'point',
           type: 'text',
           required: true,
-          label: 'Description Point',
+          label: 'Main Description Point',
+        },
+        {
+          name: 'subPoints',
+          type: 'array',
+          label: 'Sub Points',
+          fields: [
+            {
+              name: 'subPoint',
+              type: 'text',
+              required: true,
+              label: 'Sub Description Point',
+            },
+          ],
         },
       ],
     },

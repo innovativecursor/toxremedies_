@@ -65,7 +65,7 @@ const ExpertiseSection = () => {
     <section className="max-w-7xl mx-auto px-6 md:px-0 py-16">
       {/* Header Section */}
       <div className="text-left">
-        <button className="px-5 py-2 bg-black text-white text-sm rounded-full font-medium">
+        <button className="bg-black text-white px-5 py-2 rounded-full font-light text-[12px]">
           Our Expertise
         </button>
         <h2 className="text-md sm:text-4xl font-medium tracking-wider text-[#181818] mt-4">

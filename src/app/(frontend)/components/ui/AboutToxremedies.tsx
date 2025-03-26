@@ -12,7 +12,7 @@ const AboutToxRemedies = () => {
         {/* Left Content */}
         <div>
           <div className="mb-7">
-            <span className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
+            <span className="bg-black text-white px-5 py-2 rounded-full font-light text-[12px]">
               About Us
             </span>
           </div>
