@@ -33,13 +33,13 @@ const Hero = () => {
         </div>
 
         {/* Right Image - Stays Properly Aligned on Mobile & Desktop */}
-        <div className="hero-image-container w-full md:w-[70%] lg:w-[68%] flex justify-center md:justify-end items-end absolute bottom-0 right-0">
+        <div className="hero-image-container w-full flex justify-center md:justify-end items-end absolute bottom-0 right-0">
           <Image
             width={1200}
             height={1200}
             src={heroImage.src}
             alt="Doctor with Family"
-            className="w-full h-auto object-cover"
+            className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] 2xl:max-w-[800px] h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[550px] xl:max-h-[600px] 2xl:max-h-[650px] object-contain"
           />
         </div>
       </div>
