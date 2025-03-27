@@ -7,10 +7,8 @@ const Footer = () => {
   return (
     <div className="px-6 md:px-16 py-12">
       <footer className="bg-footer-gradient rounded-3xl max-w-7xl mx-auto">
-        {/* Upper Section - Separate Padding */}
         <div className="py-10 px-6 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-3 md:gap-16 gap-12 text-gray-800">
-            {/* Logo & Description */}
             <div className="space-y-4 md:w-[390px]">
               <Image
                 src={footerImage}
@@ -26,10 +24,7 @@ const Footer = () => {
                 compliance and consumer well-being.
               </p>
             </div>
-
-            {/* Other Sections: Quick Links, Contact Info, and Legal */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:col-span-2">
-              {/* Quick Links */}
               <div className="space-y-4 md:ml-20">
                 <h4 className="font-medium text-[#181818] tracking-wider text-[16px]">
                   QUICK LINKS
@@ -42,8 +37,6 @@ const Footer = () => {
                   <li className="hover:text-[#0D94CD] cursor-pointer">Contact</li>
                 </ul>
               </div>
-
-              {/* Contact Info */}
               <div className="space-y-4">
                 <h4 className="font-medium text-[#181818] tracking-wider text-[16px]">
                   CONTACT INFO
@@ -73,8 +66,6 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-
-              {/* Legal */}
               <div className="space-y-4">
                 <h4 className="font-medium text-[16px] text-[#181818] tracking-wider">LEGAL</h4>
                 <ul className="space-y-3 text-sm font-light">
@@ -85,17 +76,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Bottom Section - No Side Padding */}
         <div className="border-t border-gray-300 font-light w-full py-4 flex flex-col md:flex-row items-center justify-center md:justify-between text-sm text-gray-600 px-4 sm:px-8 md:px-16 gap-4 md:gap-0 text-center md:text-left">
           <p>© 2025 Dr. Milind D. Deore. All rights reserved.</p>
-
-          {/* LinkedIn Icon */}
           <div className="bg-blue-500 text-white p-2 rounded-full hover:bg-[#0D94CD] cursor-pointer">
             <FaLinkedin size={18} />
           </div>
-
-          {/* Designed by Innovative Cursor */}
           <p className="flex items-center gap-2">
             Designed by
             <Image src={logo} width={20} height={20} alt="innovative cursor" />

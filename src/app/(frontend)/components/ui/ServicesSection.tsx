@@ -7,10 +7,18 @@ import tickIcon from '../../public/assets/aboutusAssets/tick_image.png'
 import { fetchServices } from '../../utils/api'
 
 // Define the type for services
+
+interface SubPoint {
+  subPoint: string
+}
+interface DescriptionPoint {
+  point: string
+  subPoints?: SubPoint[]
+}
 interface Service {
   title: string
   image: { url: string }
-  description: { point: string }[]
+  description: DescriptionPoint[]
 }
 
 const ServicesSection = () => {
@@ -58,9 +66,23 @@ const ServicesSection = () => {
 
             <ul className="mt-3 space-y-2 text-sm text-gray-700">
               {service.description.slice(0, 3).map((point, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <Image src={tickIcon} alt="Tick" width={12} height={12} />
-                  <span className="tracking-wide text-[13px]">{point.point}</span>
+                <li key={i} className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <Image src={tickIcon} alt="Tick" width={12} height={12} />
+                    <span className="tracking-wide text-[13px]">{point.point}</span>
+                  </div>
+
+                  {/* {point.subPoints && point.subPoints.length > 0 && (
+                    <ul className="ml-5 space-y-1 text-gray-600">
+                      {point.subPoints.map((sub, j) => (
+                        <li key={j} className="flex items-center gap-2">
+                          <Image src={tickIcon} alt="Tick" width={10} height={10} />
+                          <span className="tracking-wide text-[12px]">{sub.subPoint}</span>
+                      
+                        </li>
+                      ))}
+                    </ul>
+                  )} */}
                 </li>
               ))}
             </ul>
@@ -107,9 +129,23 @@ const ServicesSection = () => {
               <div className="mt-3 max-h-40 sm:max-h-48 overflow-y-auto pr-2 custom-scrollbar">
                 <ul className="space-y-2 text-sm text-gray-700">
                   {selectedService.description.map((point, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <Image src={tickIcon} alt="Tick" width={12} height={12} />
-                      <span className="tracking-wide text-[13px]">{point.point}</span>
+                    <li key={i} className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <Image src={tickIcon} alt="Tick" width={12} height={12} />
+                        <span className="tracking-wide text-[13px]">{point.point}</span>
+                      </div>
+
+                      {point.subPoints && point.subPoints.length > 0 && (
+                        <ul className="ml-5 space-y-1 text-gray-600">
+                          {point.subPoints.map((subpoint, j) => (
+                            <li key={j} className="flex items-center gap-2">
+                              {/* <Image src={tickIcon} alt="Tick" width={10} height={10} /> */}
+                              <span>-</span>
+                              <span className="tracking-wide text-[12px]">{subpoint.subPoint}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   ))}
                 </ul>
