@@ -39,7 +39,7 @@ const Hero = () => {
             height={1200}
             src={heroImage.src}
             alt="Doctor with Family"
-            className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] 2xl:max-w-[800px] h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[550px] xl:max-h-[600px] 2xl:max-h-[650px] object-contain"
+            className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[626px] 2xl:max-w-[800px] h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[550px] xl:max-h-[600px] 2xl:max-h-[650px] object-contain"
           />
         </div>
       </div>
