@@ -71,18 +71,6 @@ const ServicesSection = () => {
                     <Image src={tickIcon} alt="Tick" width={12} height={12} />
                     <span className="tracking-wide text-[13px]">{point.point}</span>
                   </div>
-
-                  {/* {point.subPoints && point.subPoints.length > 0 && (
-                    <ul className="ml-5 space-y-1 text-gray-600">
-                      {point.subPoints.map((sub, j) => (
-                        <li key={j} className="flex items-center gap-2">
-                          <Image src={tickIcon} alt="Tick" width={10} height={10} />
-                          <span className="tracking-wide text-[12px]">{sub.subPoint}</span>
-                      
-                        </li>
-                      ))}
-                    </ul>
-                  )} */}
                 </li>
               ))}
             </ul>
