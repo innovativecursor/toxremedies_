@@ -86,7 +86,7 @@ const FeaturedPublications: React.FC = () => {
                   alt={pub.title}
                   width={400}
                   height={250}
-                  className="rounded-lg w-full h-[250px] object-cover"
+                  className="rounded-lg w-full h-[350px] object-cover"
                 />
 
                 <p className="text-gray-500 text-sm mt-4">
@@ -94,7 +94,7 @@ const FeaturedPublications: React.FC = () => {
                 </p>
 
                 <h3 className="text-lg font-medium text-[#181818] mt-2 truncate max-w-full">
-                  {pub.title.length > 10 ? `${pub.title.slice(0, 10)}...` : pub.title}
+                  {pub.title.length > 10 ? `${pub.title.slice(0, 200)}...` : pub.title}
                 </h3>
 
                 <Link
