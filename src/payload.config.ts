@@ -14,6 +14,7 @@ import icon from '../src/app/(frontend)/public/favicon.ico'
 import FounderImages from './collections/FounderImage'
 import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
 import Services from './collections/Services'
+import PdfCompressor from './collections/PdfCompressor'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,7 +38,15 @@ export default buildConfig({
     },
   },
 
-  collections: [Users, Media, ContactUs, FounderImages, BackendFeaturedPublications, Services],
+  collections: [
+    Users,
+    Media,
+    ContactUs,
+    FounderImages,
+    BackendFeaturedPublications,
+    Services,
+    PdfCompressor,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
