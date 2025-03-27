@@ -32,6 +32,23 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
+      <head>
+        <meta property="og:title" content="ToxRemedies" />
+        <meta property="og:description" content="In Service of Human and Environmental Health." />
+        <meta property="og:image" content="/assets/thumbnail.webp" />
+        <meta property="og:image:alt" content="About ToxRemedies" />
+        <meta property="og:image:type" content="image/webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://toxremedies.com/" />
+
+        {/* Fallback for Twitter Cards */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ToxRemedies" />
+        <meta name="twitter:description" content="ToxRemedies" />
+        {/* <meta name="twitter:image" content="/assets/home/heroSection/hero6.png" /> */}
+      </head>
       <body className={`${poppins.variable} ${albertSans.variable}`}>
         <Toaster />
         {loading && <Loader />} {/* Show Loader when loading */}
