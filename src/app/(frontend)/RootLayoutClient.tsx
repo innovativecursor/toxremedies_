@@ -6,7 +6,6 @@ import { Poppins, Albert_Sans } from 'next/font/google'
 import Toaster from './components/ui/Toaster'
 import Loader from './components/ui/Loader'
 import { usePathname } from 'next/navigation'
-import Head from 'next/head' // Import Head
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -33,9 +32,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="../public/favicon.ico" type="image/x-icon" />
-      </Head>
       <body className={`${poppins.variable} ${albertSans.variable}`}>
         <Toaster />
         {loading && <Loader />} {/* Show Loader when loading */}
