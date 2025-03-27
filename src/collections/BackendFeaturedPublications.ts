@@ -1,7 +1,11 @@
 import { CollectionConfig } from 'payload'
 import fs from 'fs'
 import path from 'path'
-import { execa } from 'execa' // For running shell commands
+import { execa } from 'execa' // Run shell commands
+import { promisify } from 'util'
+
+const stat = promisify(fs.stat) // Async file size check
+const rename = promisify(fs.rename) // Async rename
 
 export const BackendFeaturedPublications: CollectionConfig = {
   slug: 'backend-featured-publications',
@@ -15,6 +19,8 @@ export const BackendFeaturedPublications: CollectionConfig = {
   access: {
     create: () => true,
     read: () => true,
+    update: () => true,
+    delete: () => true,
   },
   fields: [
     {
@@ -49,19 +55,20 @@ export const BackendFeaturedPublications: CollectionConfig = {
     beforeChange: [
       async ({ data, req }) => {
         if (data.pdf) {
-          const pdfFilePath = path.resolve(__dirname, `../../public/uploads/${data.pdf.filename}`)
-          let stats = fs.statSync(pdfFilePath)
-          let fileSizeInMB = stats.size / (1024 * 1024) // Convert bytes to MB
+          try {
+            const uploadDir = path.resolve(__dirname, '../../../public/uploads') // Adjust path
+            const pdfFilePath = path.join(uploadDir, data.pdf.filename)
 
-          if (fileSizeInMB > 1) {
-            console.log(
-              `Compressing PDF: ${data.pdf.filename} (Size: ${fileSizeInMB.toFixed(2)}MB)`,
-            )
+            let stats = await stat(pdfFilePath)
+            let fileSizeInMB = stats.size / (1024 * 1024) // Convert bytes to MB
 
-            const outputPath = pdfFilePath.replace('.pdf', '-compressed.pdf')
+            if (fileSizeInMB > 1) {
+              console.log(
+                `⚡ Compressing PDF: ${data.pdf.filename} (Size: ${fileSizeInMB.toFixed(2)}MB)`,
+              )
 
-            try {
-              // Run Ghostscript to compress the PDF
+              const outputPath = pdfFilePath.replace('.pdf', '-compressed.pdf')
+
               await execa('gs', [
                 '-sDEVICE=pdfwrite',
                 '-dCompatibilityLevel=1.4',
@@ -73,17 +80,17 @@ export const BackendFeaturedPublications: CollectionConfig = {
                 pdfFilePath,
               ])
 
-              // Replace the original PDF with the compressed one
-              fs.renameSync(outputPath, pdfFilePath)
+              // Replace original file with compressed one
+              await rename(outputPath, pdfFilePath)
 
-              // Check new file size
-              stats = fs.statSync(pdfFilePath)
+              // Re-check file size
+              stats = await stat(pdfFilePath)
               fileSizeInMB = stats.size / (1024 * 1024)
 
               console.log(`✅ PDF compressed to ${fileSizeInMB.toFixed(2)}MB!`)
-            } catch (error) {
-              console.error('❌ PDF compression failed:', error)
             }
+          } catch (error) {
+            console.error('❌ PDF compression failed:', error)
           }
         }
       },
