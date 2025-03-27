@@ -12,8 +12,9 @@ import { Media } from './collections/Media'
 import ContactUs from './collections/ContactUs'
 import icon from '../public/favicon.ico'
 import FounderImages from './collections/FounderImage'
-import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
+
 import Services from './collections/Services'
+import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
