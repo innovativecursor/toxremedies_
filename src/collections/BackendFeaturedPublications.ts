@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload'
 import fs from 'fs'
 import path from 'path'
-import pdfLib from 'pdf-lib' // PDF compression library
+import { execa } from 'execa' // For running shell commands
 
 export const BackendFeaturedPublications: CollectionConfig = {
   slug: 'backend-featured-publications',
@@ -50,21 +50,40 @@ export const BackendFeaturedPublications: CollectionConfig = {
       async ({ data, req }) => {
         if (data.pdf) {
           const pdfFilePath = path.resolve(__dirname, `../../public/uploads/${data.pdf.filename}`)
-          const stats = fs.statSync(pdfFilePath)
-          const fileSizeInMB = stats.size / (1024 * 1024) // Convert bytes to MB
+          let stats = fs.statSync(pdfFilePath)
+          let fileSizeInMB = stats.size / (1024 * 1024) // Convert bytes to MB
 
           if (fileSizeInMB > 1) {
-            console.log('Compressing PDF...')
+            console.log(
+              `Compressing PDF: ${data.pdf.filename} (Size: ${fileSizeInMB.toFixed(2)}MB)`,
+            )
 
-            // Load PDF and compress
-            const existingPdfBytes = fs.readFileSync(pdfFilePath)
-            const pdfDoc = await pdfLib.PDFDocument.load(existingPdfBytes)
-            pdfDoc.setCreator('ToxRemedies') // Example metadata
-            const compressedPdfBytes = await pdfDoc.save({ useObjectStreams: true }) // Optimize PDF
+            const outputPath = pdfFilePath.replace('.pdf', '-compressed.pdf')
 
-            // Overwrite the original file with compressed version
-            fs.writeFileSync(pdfFilePath, compressedPdfBytes)
-            console.log('PDF compressed successfully!')
+            try {
+              // Run Ghostscript to compress the PDF
+              await execa('gs', [
+                '-sDEVICE=pdfwrite',
+                '-dCompatibilityLevel=1.4',
+                '-dPDFSETTINGS=/screen', // Aggressive compression
+                '-dNOPAUSE',
+                '-dQUIET',
+                '-dBATCH',
+                `-sOutputFile=${outputPath}`,
+                pdfFilePath,
+              ])
+
+              // Replace the original PDF with the compressed one
+              fs.renameSync(outputPath, pdfFilePath)
+
+              // Check new file size
+              stats = fs.statSync(pdfFilePath)
+              fileSizeInMB = stats.size / (1024 * 1024)
+
+              console.log(`✅ PDF compressed to ${fileSizeInMB.toFixed(2)}MB!`)
+            } catch (error) {
+              console.error('❌ PDF compression failed:', error)
+            }
           }
         }
       },
