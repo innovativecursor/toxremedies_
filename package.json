@@ -25,6 +25,7 @@
     "graphql": "^16.8.1",
     "next": "^15.2.2",
     "payload": "^3.28.1",
+    "pdf-lib": "^1.17.1",
     "react": "19.0.0",
     "react-countup": "^6.5.3",
     "react-dom": "19.0.0",
