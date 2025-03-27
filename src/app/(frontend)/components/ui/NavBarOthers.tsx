@@ -29,7 +29,7 @@ const NavBarOthers = () => {
           'linear-gradient(260.13deg, #FFFFFF -14.7%, #F8FFEB 20.11%, #D9F4FF 46.52%, #F4FFDC 102.3%)',
       }}
     >
-      <div className="container max-w-7xl mx-auto px-6 py-8 flex items-center justify-between">
+      <div className="container max-w-7xl mx-auto px-6 py-6 flex items-center justify-between lg:py-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 cursor-pointer">
           <Image
@@ -37,12 +37,12 @@ const NavBarOthers = () => {
             height={200}
             src={logo}
             alt="Logo"
-            className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[290px] h-auto"
+            className="w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] xl:w-[300px] xxl:w-[260px] h-auto"
           />
         </Link>
 
         {/* Desktop Navigation (Hidden in Tablet) */}
-        <ul className="hidden lg:flex space-x-8 text-[#181818] text-[15px] font-normal">
+        <ul className="hidden lg:flex space-x-6 xl:space-x-8 text-[#181818] text-[14px] md:text-[15px] xl:text-[16px] font-normal">
           {navItems.map((item, index) => (
             <li key={index}>
               <Link
@@ -58,7 +58,7 @@ const NavBarOthers = () => {
         </ul>
 
         {/* CTA Button (Desktop) */}
-        <button className="hidden lg:block bg-[#0D94CD] text-white px-6 py-2 rounded-full hover:bg-[#0978a3] transition">
+        <button className="hidden lg:block bg-[#0D94CD] text-white px-5 md:px-6 py-2 rounded-full hover:bg-[#0978a3] transition text-sm md:text-base">
           Get a Consultation
         </button>
 
@@ -73,7 +73,7 @@ const NavBarOthers = () => {
               <Link
                 key={index}
                 href={item.link}
-                className="text-[#181818] text-[15px] font-normal px-4"
+                className="text-[#181818] text-[14px] md:text-[15px] font-normal px-3 md:px-4"
               >
                 {item.name}
               </Link>
@@ -83,13 +83,16 @@ const NavBarOthers = () => {
 
         {/* Mobile Menu Button */}
         <button className="lg:hidden md:hidden" onClick={() => setIsOpen(true)}>
-          <IoMdMenu size={32} className="text-[#0D94CD]" />
+          <IoMdMenu size={28} className="text-[#0D94CD]" />
         </button>
       </div>
 
       {/* Overlay for Mobile Menu */}
       {isOpen && (
-        <div className="fixed inset-0 bg-opacity-50 z-40" onClick={() => setIsOpen(false)}></div>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
       )}
 
       {/* Mobile Navigation Menu */}
@@ -102,11 +105,11 @@ const NavBarOthers = () => {
       >
         {/* Close Button */}
         <button className="self-end mb-6" onClick={() => setIsOpen(false)}>
-          <GiHamburgerMenu size={32} className="text-blue-600" />
+          <GiHamburgerMenu size={28} className="text-blue-600" />
         </button>
 
         {/* Mobile Navigation Links */}
-        <motion.ul className="flex flex-col space-y-6 text-[#181818] font-medium">
+        <motion.ul className="flex flex-col space-y-5 text-[#181818] font-medium text-[16px]">
           {navItems.map((item, index) => (
             <motion.li
               key={index}
@@ -128,7 +131,7 @@ const NavBarOthers = () => {
 
         {/* CTA Button (Mobile) */}
         <motion.button
-          className="mt-10 bg-[#0D94CD] text-white px-5 py-2 rounded-full shadow-md hover:bg-[#0978a3] transition"
+          className="mt-8 bg-[#0D94CD] text-white px-4 py-4 rounded-full shadow-md hover:bg-[#0978a3] transition"
           whileHover={{ scale: 1.05 }}
           onClick={() => setIsOpen(false)}
         >

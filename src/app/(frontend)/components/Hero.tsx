@@ -32,8 +32,8 @@ const Hero = () => {
           <ScheduleMeetingButton text=" Schedule a Consultation" />
         </div>
 
-        {/* Right Image - Stays Properly Aligned on Mobile & Desktop */}
-        <div className="hero-image-container w-full flex justify-center md:justify-end items-end absolute bottom-0 right-0">
+        {/* Right Image - Visible only on Desktop */}
+        <div className="hidden lg:flex hero-image-container w-full justify-end items-end absolute bottom-0 right-0">
           <Image
             width={1200}
             height={1200}

@@ -46,7 +46,7 @@ const Navbar = () => {
 
   return (
     <nav className="absolute top-0 left-0 w-full z-50 bg-transparent">
-      <div className="w-full max-w-[90%] sm:max-w-[85%] md:max-w-[100%] lg:max-w-[92%] xl:max-w-[70%] 2xl:max-w-[79%] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 py-6 sm:py-7 md:py-8 lg:py-9 xl:py-10 flex justify-between items-center">
+      <div className="w-full max-w-[90%] sm:max-w-[85%] md:max-w-[100%] lg:max-w-7xl xl:max-w-7xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 py-6 sm:py-7 md:py-8 lg:py-9 xl:py-10 flex justify-between items-center">
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8 text-[#181818] text-[15px] font-normal">
           {[

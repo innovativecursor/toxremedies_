@@ -62,17 +62,17 @@ const expertiseData = [
 
 const ExpertiseSection = () => {
   return (
-    <section className="max-w-7xl mx-auto px-6 md:px-0 py-16">
+    <section className="max-w-[95%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-7xl xl:max-w-full 2xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-4 2xl:px-0 py-16">
       {/* Header Section */}
       <div className="text-left">
-        <button className="bg-black text-white px-5 py-2 rounded-full font-light text-[12px]">
+        <button className="bg-black text-white px-5 py-2 rounded-full font-light text-[12px] sm:text-[14px] lg:text-[15px]">
           Our Expertise
         </button>
-        <h2 className="text-md sm:text-4xl font-medium tracking-wider text-[#181818] mt-4">
+        <h2 className="text-lg sm:text-3xl md:text-4xl lg:text-3.5xl font-medium tracking-wider text-[#181818] mt-4 leading-snug">
           Comprehensive Toxicology Expertise for <br className="hidden md:inline" /> Product Safety
           & Compliance
         </h2>
-        <p className="text-[#272727] mt-4 text-[15px] leading-8 font-light max-w-full sm:max-w-[600px] md:max-w-[750px] lg:max-w-[87%]">
+        <p className="text-[#272727] mt-4 text-[14px] sm:text-[15px] md:text-[16px] leading-7 sm:leading-8 font-light max-w-full sm:max-w-[600px] md:max-w-[750px] lg:max-w-[87%]">
           At ToxRemedies, we specialize in toxicology strategies, risk assessments, and regulatory
           compliance across multiple industries, including cosmetics, pharmaceuticals, medical
           devices, food products, and consumer goods. With decades of experience, we provide
@@ -81,7 +81,7 @@ const ExpertiseSection = () => {
       </div>
 
       {/* Expertise Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
         {expertiseData.map((item, index) => (
           <motion.div
             key={index}
@@ -92,22 +92,26 @@ const ExpertiseSection = () => {
             }}
           >
             <motion.div
-              className="w-15 h-15 flex items-center justify-center rounded-full bg-[#0D94CD] transition-all duration-500"
+              className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0D94CD] transition-all duration-500"
               whileHover={{ backgroundColor: '#000' }}
             >
               <motion.div whileHover={{ filter: 'brightness(0)' }}>
                 <Image
                   src={item.imageSrc}
                   alt={item.title}
-                  width={30}
-                  height={30}
+                  width={40}
+                  height={40}
                   className="rounded-full"
                 />
               </motion.div>
             </motion.div>
-            <h3 className="text-[15px] font-semibold text-gray-900 mt-2 pb-2">{item.title}</h3>
+            <h3 className="text-[14px] sm:text-[15px] md:text-[15px] font-semibold text-gray-900 mt-2 pb-2">
+              {item.title}
+            </h3>
             <span className="border-[0.5px] border-[#BCBDBF] w-10"></span>
-            <p className="text-gray-600 mt-2 text-[12px] max-w-[250px]">{item.description}</p>
+            <p className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[14px] max-w-[250px]">
+              {item.description}
+            </p>
           </motion.div>
         ))}
       </div>
