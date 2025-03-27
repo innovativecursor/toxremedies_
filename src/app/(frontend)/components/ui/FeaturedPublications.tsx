@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { fetchFeaturedPublications } from '../../utils/api'
+import { motion } from 'framer-motion'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 interface Publication {
   id: number
@@ -16,6 +18,7 @@ interface Publication {
 const FeaturedPublications: React.FC = () => {
   const [publications, setPublications] = useState<Publication[]>([])
   const [loading, setLoading] = useState<boolean>(true)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const getPublications = async () => {
@@ -36,9 +39,17 @@ const FeaturedPublications: React.FC = () => {
     return <p className="text-center py-10">Loading publications...</p>
   }
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % publications.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + publications.length) % publications.length)
+  }
+
   return (
     <section
-      className="py-16 px-6 sm:px-10"
+      className="py-16 px-6 sm:px-10 relative"
       style={{
         background:
           'linear-gradient(280.06deg, rgba(255, 255, 255, 0.6) 1.47%, rgba(235, 249, 255, 0.6) 50.6%, rgba(248, 255, 233, 0.6) 98.53%)',
@@ -59,37 +70,61 @@ const FeaturedPublications: React.FC = () => {
           toxicology standards and regulatory frameworks.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {publications.map((pub) => (
-            <div
-              key={pub.id}
-              className="p-4 rounded-lg text-left transition-transform transform hover:scale-105 duration-500 ease-in-out"
-            >
-              <Image
-                src={pub.publicationImage.url}
-                alt={pub.title}
-                width={400}
-                height={250}
-                className="rounded-lg w-full object-cover"
-              />
-
-              <p className="text-gray-500 text-sm mt-4">
-                Date: {new Date(pub.createdAt).toLocaleDateString()}
-              </p>
-
-              <h3 className="text-lg font-medium text-[#181818] mt-2">{pub.title}</h3>
-
-              <Link
-                href={pub.pdf.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0D94CD] font-medium mt-6 inline-flex items-center"
+        <div className="mt-10 relative w-full overflow-hidden">
+          <motion.div
+            className="flex"
+            animate={{ x: `-${currentIndex * 100}%` }}
+            transition={{ ease: 'easeInOut', duration: 0.5 }}
+          >
+            {publications.map((pub) => (
+              <div
+                key={pub.id}
+                className="w-full sm:w-1/2 lg:w-1/3 p-4 shrink-0 text-left transition-transform"
               >
-                Read More <span className="ml-1">→</span>
-              </Link>
-            </div>
-          ))}
+                <Image
+                  src={pub.publicationImage.url}
+                  alt={pub.title}
+                  width={400}
+                  height={250}
+                  className="rounded-lg w-full object-cover"
+                />
+
+                <p className="text-gray-500 text-sm mt-4">
+                  Date: {new Date(pub.createdAt).toLocaleDateString()}
+                </p>
+
+                <h3 className="text-lg font-medium text-[#181818] mt-2">{pub.title}</h3>
+
+                <Link
+                  href={pub.pdf.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0D94CD] font-medium mt-6 inline-flex items-center"
+                >
+                  Read More <span className="ml-1">→</span>
+                </Link>
+              </div>
+            ))}
+          </motion.div>
         </div>
+
+        {publications.length > 3 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+            >
+              <FaArrowLeft className="text-black" size={20} />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+            >
+              <FaArrowRight className="text-black" size={20} />
+            </button>
+          </>
+        )}
       </div>
     </section>
   )

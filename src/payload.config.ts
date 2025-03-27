@@ -14,7 +14,7 @@ import icon from '../src/app/(frontend)/public/favicon.ico'
 import FounderImages from './collections/FounderImage'
 import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
 import Services from './collections/Services'
-import PdfCompressor from './collections/PdfCompressor'
+import favicon from './app/(frontend)/public/favicon.ico'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -31,6 +31,11 @@ export default buildConfig({
       icons: [
         {
           rel: 'icon',
+          type: 'image/x-icon',
+          url: icon.src, // Use this instead of 'favicon' property
+        },
+        {
+          rel: 'icon',
           type: 'image/png',
           url: icon.src,
         },
@@ -38,15 +43,7 @@ export default buildConfig({
     },
   },
 
-  collections: [
-    Users,
-    Media,
-    ContactUs,
-    FounderImages,
-    BackendFeaturedPublications,
-    Services,
-    PdfCompressor,
-  ],
+  collections: [Users, Media, ContactUs, FounderImages, BackendFeaturedPublications, Services],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

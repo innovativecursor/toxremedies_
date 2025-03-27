@@ -6,10 +6,7 @@ import { execa } from 'execa' // For running Ghostscript (gs)
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
-    create: () => true,
     read: () => true,
-    update: () => true,
-    delete: () => true,
   },
   upload: {
     staticDir: 'media', // ✅ Store files in /media folder
