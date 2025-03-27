@@ -36,6 +36,7 @@ export default buildConfig({
       ],
     },
   },
+
   collections: [Users, Media, ContactUs, FounderImages, BackendFeaturedPublications, Services],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
