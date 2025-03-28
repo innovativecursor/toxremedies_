@@ -25,6 +25,7 @@
     "framer-motion": "^12.5.0",
     "graphql": "^16.8.1",
     "next": "^15.2.2",
+    "nodemailer": "^6.10.0",
     "payload": "^3.28.1",
     "pdf-lib": "^1.17.1",
     "react": "19.0.0",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@types/node": "^22.5.4",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "autoprefixer": "^10.4.21",

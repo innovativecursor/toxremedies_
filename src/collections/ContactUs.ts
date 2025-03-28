@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload'
+import nodemailer from 'nodemailer'
 
 export const ContactUs: CollectionConfig = {
   slug: 'contact-us',
@@ -25,14 +26,14 @@ export const ContactUs: CollectionConfig = {
       type: 'email',
       label: 'Email Address',
       required: true,
-      unique: true, // Ensures uniqueness in database
+      unique: true,
     },
     {
       name: 'phone',
       type: 'text',
       label: 'Phone Number',
       required: true,
-      unique: true, // Ensures uniqueness in database
+      unique: true,
     },
     {
       name: 'message',
@@ -52,6 +53,34 @@ export const ContactUs: CollectionConfig = {
       },
     },
   ],
+
+  hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        const transporter = nodemailer.createTransport({
+          service: 'gmail', // Use an appropriate email provider
+          auth: {
+            user: process.env.ADMIN_EMAIL, // Admin email
+            pass: process.env.ADMIN_EMAIL_PASSWORD, // App password (not your actual password)
+          },
+        })
+
+        const mailOptions = {
+          from: process.env.ADMIN_EMAIL,
+          to: process.env.ADMIN_EMAIL, // Admin email where notifications go
+          subject: 'New Contact Form Submission',
+          text: `You have a new contact form submission:\n\nName: ${doc.name}\nEmail: ${doc.email}\nPhone: ${doc.phone}\nMessage: ${doc.message}`,
+        }
+
+        try {
+          await transporter.sendMail(mailOptions)
+          console.log('Email sent to admin successfully')
+        } catch (error) {
+          console.error('Error sending email:', error)
+        }
+      },
+    ],
+  },
 }
 
 export default ContactUs
