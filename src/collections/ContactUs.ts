@@ -2,6 +2,9 @@ import { CollectionConfig } from 'payload'
 import nodemailer from 'nodemailer'
 import payload from 'payload'
 import path from 'path' // ✅ Import path to handle image file
+import dotenv from 'dotenv'
+
+dotenv.config() // ✅ Load environment variables
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -11,6 +14,11 @@ const transporter = nodemailer.createTransport({
     user: process.env.ADMIN_EMAIL,
     pass: process.env.ADMIN_EMAIL_PASSWORD,
   },
+  tls: {
+    rejectUnauthorized: false, // ✅ Prevent SSL/TLS issues
+  },
+  logger: true, // ✅ Enable debugging logs
+  debug: true, // ✅ Debugging mode
 })
 
 export const ContactUs: CollectionConfig = {
@@ -40,7 +48,7 @@ export const ContactUs: CollectionConfig = {
     },
     {
       name: 'emailSent',
-      type: 'checkbox', // ✅ Ensure it's a checkbox (boolean)
+      type: 'checkbox',
       label: 'Email Sent',
       defaultValue: false,
       admin: { position: 'sidebar' },
@@ -53,17 +61,22 @@ export const ContactUs: CollectionConfig = {
         if (doc?.emailSent) return // ✅ Skip if email already sent
 
         try {
-          // ✅ Send admin notification
+          console.log(`ℹ️ Sending admin email notification...`)
           await transporter.sendMail({
             from: `"ToxRemedies New Form Update" <${process.env.ADMIN_EMAIL}>`,
             to: process.env.ADMIN_EMAIL,
             subject: 'ToxRemedies Business Inquiry',
             text: `You have a new contact form submission:\n\nName: ${doc.name}\nEmail: ${doc.email}\nPhone: ${doc.phone}\nMessage: ${doc.message}`,
           })
-
           console.log('✅ Email sent to admin successfully!')
 
-          // ✅ Send auto-reply email to the sender
+          // ✅ Ensure valid email exists
+          if (!doc.email) {
+            console.error('❌ No user email provided. Skipping auto-reply.')
+            return
+          }
+
+          console.log(`ℹ️ Sending auto-reply to ${doc.email}...`)
           await transporter.sendMail({
             from: `"ToxRemedies Support" <${process.env.ADMIN_EMAIL}>`,
             to: doc.email,
@@ -74,28 +87,28 @@ export const ContactUs: CollectionConfig = {
                 <p>Hello ${doc.name},</p>
                 <p>We have received your message and will get back to you shortly.</p>
                 <p>Best regards, <br>ToxRemedies Team</p>
-                <img src="cid:tox_remedies_nav" alt="ToxRemedies Logo" style="max-width: 200px; margin-top: 10px;">
+                <img src="cid:tox_remedies_logo" alt="ToxRemedies Logo" style="max-width: 200px; margin-top: 10px;">
               </div>
             `,
             attachments: [
               {
-                filename: 'tox_remedies_nav.png', // ✅ Update with your actual image filename
-                path: path.join(__dirname, 'public/images/tox_remedies_nav.png'), // ✅ Correct path to image
-                cid: 'tox_remedies_nav', // ✅ This makes the image inline
+                filename: 'tox_remedies_logo.png',
+                path: path.resolve(__dirname, '../public/images/tox_remedies_logo.png'), // ✅ Fix path issue
+                cid: 'tox_remedies_logo',
               },
             ],
           })
-
           console.log('✅ Auto-reply sent to user successfully!')
 
-          // ✅ Double-check field existence before updating
+          // ✅ Ensure doc has a valid `id` before updating
           if (typeof doc.id !== 'undefined') {
             await payload.update({
               collection: 'contact-us',
               id: doc.id,
               // @ts-ignore - Ignore "unused attribute" warning
-              data: { emailSent: true }, // ✅ Correct boolean type
+              data: { emailSent: true },
             })
+            console.log('✅ Email status updated in database!')
           }
         } catch (error) {
           console.error('❌ Error sending email:', error)

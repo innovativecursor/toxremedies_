@@ -21,6 +21,7 @@
     "@payloadcms/richtext-lexical": "latest",
     "@tailwindcss/postcss": "^4.0.14",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
     "execa": "^9.5.2",
     "framer-motion": "^12.5.0",
     "graphql": "^16.8.1",
