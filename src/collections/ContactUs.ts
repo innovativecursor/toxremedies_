@@ -1,6 +1,14 @@
 import { CollectionConfig } from 'payload'
 import nodemailer from 'nodemailer'
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // Use the appropriate email provider
+  auth: {
+    user: process.env.ADMIN_EMAIL,
+    pass: process.env.ADMIN_EMAIL_PASSWORD, // Use an App Password
+  },
+})
+
 export const ContactUs: CollectionConfig = {
   slug: 'contact-us',
   labels: {
@@ -57,24 +65,14 @@ export const ContactUs: CollectionConfig = {
   hooks: {
     afterChange: [
       async ({ doc }) => {
-        const transporter = nodemailer.createTransport({
-          service: 'gmail', // Use an appropriate email provider
-          auth: {
-            user: process.env.ADMIN_EMAIL, // Admin email
-            pass: process.env.ADMIN_EMAIL_PASSWORD, // App password (not your actual password)
-          },
-        })
-
-        const mailOptions = {
-          from: process.env.ADMIN_EMAIL,
-          to: process.env.ADMIN_EMAIL, // Admin email where notifications go
-          subject: 'New Contact Form Submission',
-          text: `You have a new contact form submission:\n\nName: ${doc.name}\nEmail: ${doc.email}\nPhone: ${doc.phone}\nMessage: ${doc.message}`,
-        }
-
         try {
-          await transporter.sendMail(mailOptions)
-          console.log('Email sent to admin successfully')
+          await transporter.sendMail({
+            from: process.env.ADMIN_EMAIL,
+            to: process.env.ADMIN_EMAIL, // Admin email
+            subject: 'New Contact Form Submission',
+            text: `You have a new contact form submission:\n\nName: ${doc.name}\nEmail: ${doc.email}\nPhone: ${doc.phone}\nMessage: ${doc.message}`,
+          })
+          console.log('Admin notification email sent successfully!')
         } catch (error) {
           console.error('Error sending email:', error)
         }

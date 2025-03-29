@@ -15,10 +15,17 @@ import FounderImages from './collections/FounderImage'
 
 import Services from './collections/Services'
 import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
-
+import nodemailer from 'nodemailer'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // or use another email provider
+  auth: {
+    user: process.env.ADMIN_EMAIL, // Your email
+    pass: process.env.ADMIN_EMAIL_PASSWORD, // Use an app password, NOT your real password
+  },
+})
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -49,6 +56,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
+
   sharp,
   plugins: [
     payloadCloudPlugin(),

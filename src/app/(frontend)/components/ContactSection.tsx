@@ -49,6 +49,27 @@ const ContactSection = () => {
       <section className="max-w-7xl py-16 sm:py-20">
         <div className="flex flex-col-reverse lg:flex-row items-stretch w-full gap-8 lg:gap-4">
           {/* Left Side - Contact Form & Info */}
+
+          {/* Right Side - Contact Info & Image */}
+          <div className="w-full lg:w-[550px] flex flex-col items-start">
+            <button className="bg-black text-white px-6 py-3 rounded-full font-light tracking-wider text-sm shadow-md mb-4 sm:text-[14px] sm:px-8">
+              Make Appointment
+            </button>
+            <h2 className="text-2xl sm:text-3xl md:text-[48px] mt-2 font-medium tracking-wide whitespace-nowrap">
+              Get in Touch with Us
+            </h2>
+            <p className="text-[#272727] text-[15px] sm:text-[17px] leading-6 sm:leading-7 font-light mt-4 mb-4">
+              Reach out to us for regulatory guidance, safety assessments, and toxicology
+              consulting.
+            </p>
+            <Image
+              width={500}
+              height={500}
+              src={contact}
+              alt="Consultation"
+              className="mt-4 rounded-lg w-full sm:h-[400px] md:h-[525px] object-cover"
+            />
+          </div>
           <div className="flex-1 lg:pr-6">
             {/* Contact Form */}
             <form
@@ -137,27 +158,6 @@ const ContactSection = () => {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Right Side - Contact Info & Image */}
-          <div className="w-full lg:w-[550px] flex flex-col items-start">
-            <button className="bg-black text-white px-6 py-3 rounded-full font-light tracking-wider text-sm shadow-md mb-4 sm:text-[14px] sm:px-8">
-              Make Appointment
-            </button>
-            <h2 className="text-2xl sm:text-3xl md:text-[48px] mt-2 font-medium tracking-wide whitespace-nowrap">
-              Get in Touch with Us
-            </h2>
-            <p className="text-[#272727] text-[15px] sm:text-[17px] leading-6 sm:leading-7 font-light mt-4 mb-4">
-              Reach out to us for regulatory guidance, safety assessments, and toxicology
-              consulting.
-            </p>
-            <Image
-              width={500}
-              height={500}
-              src={contact}
-              alt="Consultation"
-              className="mt-4 rounded-lg w-full sm:h-[400px] md:h-[500px] object-cover"
-            />
           </div>
         </div>
       </section>
