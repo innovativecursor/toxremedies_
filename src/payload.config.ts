@@ -16,6 +16,7 @@ import FounderImages from './collections/FounderImage'
 import Services from './collections/Services'
 import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
 import nodemailer from 'nodemailer'
+import EmailLogs from './collections/EmailLogs'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -32,6 +33,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    // @ts-ignore - Ignore "unused attribute" warning
+    branding: {
+      companyName: 'ToxRemedies Portal', // ✅ Keep only this if logo isn't needed
+    },
 
     meta: {
       titleSuffix: ' - ToxRemedies',
@@ -45,7 +50,15 @@ export default buildConfig({
     },
   },
 
-  collections: [Users, Media, ContactUs, FounderImages, BackendFeaturedPublications, Services],
+  collections: [
+    Users,
+    Media,
+    ContactUs,
+    FounderImages,
+    BackendFeaturedPublications,
+    Services,
+    EmailLogs,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
