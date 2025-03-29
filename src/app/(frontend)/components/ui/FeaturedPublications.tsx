@@ -40,11 +40,15 @@ const FeaturedPublications: React.FC = () => {
   }
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % publications.length)
+    if (currentIndex < publications.length - 1) {
+      setCurrentIndex(currentIndex + 1)
+    }
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + publications.length) % publications.length)
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1)
+    }
   }
 
   return (
@@ -73,7 +77,7 @@ const FeaturedPublications: React.FC = () => {
         <div className="mt-10 relative w-full overflow-hidden">
           <motion.div
             className="flex"
-            animate={{ x: `-${currentIndex * 100}%` }}
+            animate={{ x: `-${currentIndex * (100 / Math.min(3, publications.length))}%` }}
             transition={{ ease: 'easeInOut', duration: 0.5 }}
           >
             {publications.map((pub) => (
@@ -111,21 +115,29 @@ const FeaturedPublications: React.FC = () => {
         </div>
 
         {publications.length > 3 && (
-          <>
+          <div className="relative flex justify-center items-center mt-6">
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+              disabled={currentIndex === 0}
+              className={`px-4 py-2 bg-gray-800 text-white font-medium mr-4 ${
+                currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'
+              }`}
             >
-              <FaArrowLeft className="text-black" size={20} />
+              <FaArrowLeft size={20} />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+              disabled={currentIndex === publications.length - 3} // Ensure it stops when last set of cards is reached
+              className={`px-4 py-2 bg-gray-800 text-white font-medium ${
+                currentIndex === publications.length - 3
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-gray-700'
+              }`}
             >
-              <FaArrowRight className="text-black" size={20} />
+              <FaArrowRight size={20} />
             </button>
-          </>
+          </div>
         )}
       </div>
     </section>
