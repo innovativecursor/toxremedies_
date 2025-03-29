@@ -19,6 +19,7 @@ const FeaturedPublications: React.FC = () => {
   const [publications, setPublications] = useState<Publication[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [itemsPerView, setItemsPerView] = useState(3) // Default for desktop
 
   useEffect(() => {
     const getPublications = async () => {
@@ -35,12 +36,29 @@ const FeaturedPublications: React.FC = () => {
     getPublications()
   }, [])
 
+  // Dynamically adjust number of visible items
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerView(1) // Mobile: Show 1 item
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(2) // Tablet: Show 2 items
+      } else {
+        setItemsPerView(3) // Desktop: Show 3 items
+      }
+    }
+
+    updateItemsPerView()
+    window.addEventListener('resize', updateItemsPerView)
+    return () => window.removeEventListener('resize', updateItemsPerView)
+  }, [])
+
   if (loading) {
     return <p className="text-center py-10">Loading publications...</p>
   }
 
   const nextSlide = () => {
-    if (currentIndex < publications.length - 1) {
+    if (currentIndex < publications.length - itemsPerView) {
       setCurrentIndex(currentIndex + 1)
     }
   }
@@ -77,7 +95,7 @@ const FeaturedPublications: React.FC = () => {
         <div className="mt-10 relative w-full overflow-hidden">
           <motion.div
             className="flex"
-            animate={{ x: `-${currentIndex * (100 / Math.min(3, publications.length))}%` }}
+            animate={{ x: `-${currentIndex * (100 / itemsPerView)}%` }}
             transition={{ ease: 'easeInOut', duration: 0.5 }}
           >
             {publications.map((pub) => (
@@ -114,7 +132,7 @@ const FeaturedPublications: React.FC = () => {
           </motion.div>
         </div>
 
-        {publications.length > 3 && (
+        {publications.length > itemsPerView && (
           <div className="relative flex justify-center items-center mt-6">
             <button
               onClick={prevSlide}
@@ -128,9 +146,9 @@ const FeaturedPublications: React.FC = () => {
 
             <button
               onClick={nextSlide}
-              disabled={currentIndex === publications.length - 3} // Ensure it stops when last set of cards is reached
+              disabled={currentIndex >= publications.length - itemsPerView} // Updated condition
               className={`px-4 py-2 bg-gray-800 text-white font-medium ${
-                currentIndex === publications.length - 3
+                currentIndex >= publications.length - itemsPerView
                   ? 'opacity-50 cursor-not-allowed'
                   : 'hover:bg-gray-700'
               }`}
