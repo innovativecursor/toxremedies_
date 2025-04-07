@@ -48,35 +48,38 @@ const ExpertiseSection = () => {
 
       {/* Expertise Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
-        {expertiseData.map((item, index) => (
-          <motion.div
-            key={index}
-            className="group p-6 border border-gray-200 rounded-2xl shadow-none flex flex-col items-center text-center transition-all duration-500 hover:bg-[#0D94CD]"
-            whileHover={{
-              boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.1)',
-              scale: 1.05,
-            }}
-          >
-            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0D94CD] transition-all duration-500 group-hover:bg-white">
-              <Image
-                src={item.image?.url}
-                alt={item.title}
-                width={40}
-                height={40}
-                className="transition-all duration-500 group-hover:invert group-hover:brightness-75"
-              />
-            </div>
-            <h3 className="text-[14px] sm:text-[15px] md:text-[15px] font-semibold text-gray-900 mt-2 pb-2 transition-all duration-500 group-hover:text-white">
-              {item.title}
-            </h3>
-            <span className="border-[0.5px] border-[#BCBDBF] w-10 transition-all duration-500 group-hover:border-white"></span>
-            <ul className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[12px] max-w-[250px] transition-all duration-500 group-hover:text-white list-disc list-inside space-y-1 text-left">
-              {item.description.map((desc, idx) => (
-                <li key={idx}>{desc.point}</li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+        {expertiseData
+          .slice()
+          .reverse()
+          .map((item, index) => (
+            <motion.div
+              key={index}
+              className="group p-6 border border-gray-200 rounded-2xl shadow-none flex flex-col items-center text-center transition-all duration-500 hover:bg-[#0D94CD]"
+              whileHover={{
+                boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.1)',
+                scale: 1.05,
+              }}
+            >
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0D94CD] transition-all duration-500 group-hover:bg-white">
+                <Image
+                  src={item.image?.url}
+                  alt={item.title}
+                  width={40}
+                  height={40}
+                  className="transition-all duration-500 group-hover:invert group-hover:brightness-75"
+                />
+              </div>
+              <h3 className="text-[14px] sm:text-[15px] md:text-[15px] font-semibold text-gray-900 mt-2 pb-2 transition-all duration-500 group-hover:text-white">
+                {item.title}
+              </h3>
+              <span className="border-[0.5px] border-[#BCBDBF] w-10 transition-all duration-500 group-hover:border-white"></span>
+              <ul className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[12px] max-w-[250px] transition-all duration-500 group-hover:text-white list-disc list-inside space-y-1 text-left">
+                {item.description.map((desc, idx) => (
+                  <li key={idx}>{desc.point}</li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
       </div>
     </section>
   )
