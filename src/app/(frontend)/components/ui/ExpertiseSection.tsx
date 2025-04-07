@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { fetchExpertise } from '../../utils/api'
-// update the path if different
 
 const ExpertiseSection = () => {
   const [expertiseData, setExpertiseData] = useState<
-    { title: string; description: string; image: { url: string } }[]
+    {
+      title: string
+      description: { point: string }[]
+      image: { url: string }
+    }[]
   >([])
 
   useEffect(() => {
@@ -67,13 +70,11 @@ const ExpertiseSection = () => {
               {item.title}
             </h3>
             <span className="border-[0.5px] border-[#BCBDBF] w-10 transition-all duration-500 group-hover:border-white"></span>
-            <p className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[14px] max-w-[250px] transition-all duration-500 group-hover:text-white">
-              <ul className="list-disc list-inside space-y-1">
-                {item.description.split('\n').map((point, idx) => (
-                  <li key={idx}>{point}</li>
-                ))}
-              </ul>
-            </p>
+            <ul className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[14px] max-w-[250px] transition-all duration-500 group-hover:text-white list-disc list-inside space-y-1">
+              {item.description.map((desc, idx) => (
+                <li key={idx}>{desc.point}</li>
+              ))}
+            </ul>
           </motion.div>
         ))}
       </div>
