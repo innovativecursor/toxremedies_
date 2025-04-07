@@ -68,31 +68,34 @@ const FAQSection = () => {
 
         {/* Right Side */}
         <div>
-          {faqs.map((faq, index) => (
-            <div key={faq.id} className="border-b border-gray-300 last:border-none">
-              <button
-                className="w-full flex items-center gap-4 py-6 text-left text-[#181818] font-medium text-[16px] sm:text-[17px] focus:outline-none"
-                onClick={() => toggleFAQ(index)}
-              >
-                <span className="text-xl font-bold">
-                  {openIndex === index ? <AiOutlineMinus /> : <GoPlus />}
-                </span>
-                {faq.question}
-              </button>
+          {faqs
+            .slice()
+            .reverse()
+            .map((faq, index) => (
+              <div key={faq.id} className="border-b border-gray-300 last:border-none">
+                <button
+                  className="w-full flex items-center gap-4 py-6 text-left text-[#181818] font-medium text-[16px] sm:text-[17px] focus:outline-none"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <span className="text-xl font-bold">
+                    {openIndex === index ? <AiOutlineMinus /> : <GoPlus />}
+                  </span>
+                  {faq.question}
+                </button>
 
-              <motion.div
-                initial={false}
-                animate={{
-                  height: openIndex === index ? 'auto' : 0,
-                  opacity: openIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="overflow-hidden text-gray-600 text-sm leading-6"
-              >
-                <p className="pb-4 pr-4">{faq.answer}</p>
-              </motion.div>
-            </div>
-          ))}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: openIndex === index ? 'auto' : 0,
+                    opacity: openIndex === index ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="overflow-hidden text-gray-600 text-sm leading-6"
+                >
+                  <p className="pb-4 pr-4">{faq.answer}</p>
+                </motion.div>
+              </div>
+            ))}
         </div>
       </div>
     </section>
