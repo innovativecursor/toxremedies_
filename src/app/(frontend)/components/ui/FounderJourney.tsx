@@ -39,7 +39,7 @@ const FounderJourney: React.FC = () => {
     if (awardImages.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % awardImages.length)
-      }, 3000) // Auto-slide every 3 seconds
+      }, 3000)
       return () => clearInterval(interval)
     }
   }, [awardImages])
@@ -49,7 +49,8 @@ const FounderJourney: React.FC = () => {
       try {
         const textData = await fetchFounderTexts()
         if (textData?.docs?.length) {
-          const texts = textData.docs.map((doc: { paragraph: string }) => doc.paragraph)
+          // @ts-ignore - Ignore "unused attribute" warning
+          const texts = textData.docs.flatMap((doc) => [doc.sectionOne, doc.sectionTwo])
           setFounderTexts(texts)
         }
       } catch (error) {
@@ -87,7 +88,7 @@ const FounderJourney: React.FC = () => {
             )}
           </div>
 
-          {/* Right Image - Static Image */}
+          {/* Right Image */}
           <div>
             <Image
               src={founderImage}
@@ -103,8 +104,6 @@ const FounderJourney: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mt-10">
           <div className="flex flex-col w-full max-w-[450px] sm:max-w-[600px] overflow-hidden">
             <div className="relative w-full h-[320px] rounded-3xl">
-              {' '}
-              {/* Set a fixed height */}
               <AnimatePresence>
                 {awardImages.length > 0 && (
                   <motion.div
@@ -120,14 +119,13 @@ const FounderJourney: React.FC = () => {
                       alt="Award Ceremony"
                       width={500}
                       height={500}
-                      className="w-full h-full object-cover rounded-3xl" /* Ensure consistent image display */
+                      className="w-full h-full object-cover rounded-3xl"
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Ensure the text is below the image */}
             <p className="mt-4 text-[#272727] text-[16px] font-light tracking-wide">
               Want to learn more?{' '}
               <a href="#" className="text-[#0D94CD] hover:text-blue-600">
