@@ -19,6 +19,7 @@ import nodemailer from 'nodemailer'
 import EmailLogs from './collections/EmailLogs'
 import FounderTexts from './collections/FounderTexts'
 import FAQs from './collections/FAQ'
+import Expertise from './collections/Expertise'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -62,6 +63,7 @@ export default buildConfig({
     EmailLogs,
     FounderTexts,
     FAQs,
+    Expertise,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

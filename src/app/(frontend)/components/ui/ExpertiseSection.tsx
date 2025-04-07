@@ -1,66 +1,29 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import expertise1 from '../../public/assets/expertiseAssets/image_1_expertise.png'
-import expertise2 from '../../public/assets/expertiseAssets/image_2_expertise.png'
-import expertise3 from '../../public/assets/expertiseAssets/image_3_expertise.png'
-import expertise4 from '../../public/assets/expertiseAssets/image_4_expertise.png'
-import expertise5 from '../../public/assets/expertiseAssets/image_5_expertise.png'
-import expertise6 from '../../public/assets/expertiseAssets/image_6_expertise.png'
-import expertise7 from '../../public/assets/expertiseAssets/image_7_expertise.png'
-import expertise8 from '../../public/assets/expertiseAssets/image_8_expertise.png'
-
-const expertiseData = [
-  {
-    title: 'Toxicology Strategies',
-    description:
-      '• Toxicology strategies for end-to-end product development\n• Establishment of Toxicology Risk Assessor units for organizations\n• Strategies for safety claim support for cosmetic products',
-    imageSrc: expertise1.src,
-  },
-  {
-    title: 'Ingredient hazard and Product Risk /Safety assessments',
-    description:
-      'Hazard profiles of chemical constituents and impurities. Ingredient and Product risk and safety assessment for cosmetic and consumer products, Medical Devices, OTC Products, and Food Products.',
-    imageSrc: expertise2.src,
-  },
-  {
-    title: 'Impurities',
-    description:
-      'Qualification of Leachables and Extractables. Impurity qualification of OTC products. Nitrosamine assessments',
-    imageSrc: expertise3.src,
-  },
-  {
-    title: 'Regulatory compliance and dossiers',
-    description:
-      'Regulatory dossiers as US FDA, EMA, EU Directive, MDR, ANVISA, ISO, China CSAR, India CDSCO. Product stewardship and ingredient safety opinions.',
-    imageSrc: expertise4.src,
-  },
-  {
-    title: 'Occupational Safety, Packaging safety  and Environmental Safety',
-    description:
-      'Derivation of Occupational Exposure Limits (OELs) of chemicals at manufacturing plants. Environmental Risk Assessment (ERA) for chemicals.',
-    imageSrc: expertise5.src,
-  },
-  {
-    title: 'Packaging Safety',
-    description: 'Safety assessments of virgin plastics and PCRs.',
-    imageSrc: expertise6.src,
-  },
-  {
-    title: 'Digital Tools, NAMs',
-    description: 'QSAR modeling. Use of NGRA. Creation of Digital tools for risk assessment.',
-    imageSrc: expertise7.src,
-  },
-  {
-    title: 'Others',
-    description:
-      'Fragrance and Flavor safety assessments. Dermatology safety for cosmetics and consumer products.',
-    imageSrc: expertise8.src,
-  },
-]
+import { fetchExpertise } from '../../utils/api'
+// update the path if different
 
 const ExpertiseSection = () => {
+  const [expertiseData, setExpertiseData] = useState<
+    { title: string; description: string; image: { url: string } }[]
+  >([])
+
+  useEffect(() => {
+    const getExpertise = async () => {
+      try {
+        const data = await fetchExpertise()
+        setExpertiseData(data?.docs || [])
+      } catch (error) {
+        console.error('Failed to fetch expertise data:', error)
+      }
+    }
+
+    getExpertise()
+  }, [])
+
   return (
     <section className="max-w-[95%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-7xl xl:max-w-full 2xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-4 2xl:px-0 py-16">
       {/* Header Section */}
@@ -85,32 +48,31 @@ const ExpertiseSection = () => {
         {expertiseData.map((item, index) => (
           <motion.div
             key={index}
-            className="p-6 border border-gray-200 rounded-2xl shadow-none flex flex-col items-center text-center transition-all duration-500"
+            className="group p-6 border border-gray-200 rounded-2xl shadow-none flex flex-col items-center text-center transition-all duration-500 hover:bg-[#0D94CD]"
             whileHover={{
               boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.1)',
               scale: 1.05,
             }}
           >
-            <motion.div
-              className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0D94CD] transition-all duration-500"
-              whileHover={{ backgroundColor: '#000' }}
-            >
-              <motion.div whileHover={{ filter: 'brightness(0)' }}>
-                <Image
-                  src={item.imageSrc}
-                  alt={item.title}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-              </motion.div>
-            </motion.div>
-            <h3 className="text-[14px] sm:text-[15px] md:text-[15px] font-semibold text-gray-900 mt-2 pb-2">
+            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0D94CD] transition-all duration-500 group-hover:bg-white">
+              <Image
+                src={item.image?.url}
+                alt={item.title}
+                width={40}
+                height={40}
+                className="transition-all duration-500 group-hover:invert group-hover:brightness-75"
+              />
+            </div>
+            <h3 className="text-[14px] sm:text-[15px] md:text-[15px] font-semibold text-gray-900 mt-2 pb-2 transition-all duration-500 group-hover:text-white">
               {item.title}
             </h3>
-            <span className="border-[0.5px] border-[#BCBDBF] w-10"></span>
-            <p className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[14px] max-w-[250px]">
-              {item.description}
+            <span className="border-[0.5px] border-[#BCBDBF] w-10 transition-all duration-500 group-hover:border-white"></span>
+            <p className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[14px] max-w-[250px] transition-all duration-500 group-hover:text-white">
+              <ul className="list-disc list-inside space-y-1">
+                {item.description.split('\n').map((point, idx) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
             </p>
           </motion.div>
         ))}
