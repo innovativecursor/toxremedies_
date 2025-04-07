@@ -17,6 +17,8 @@ import Services from './collections/Services'
 import BackendFeaturedPublications from './collections/BackendFeaturedPublications'
 import nodemailer from 'nodemailer'
 import EmailLogs from './collections/EmailLogs'
+import FounderTexts from './collections/FounderTexts'
+import FAQs from './collections/FAQ'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -58,6 +60,8 @@ export default buildConfig({
     BackendFeaturedPublications,
     Services,
     EmailLogs,
+    FounderTexts,
+    FAQs,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

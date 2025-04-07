@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import founderImage from '../../public/assets/aboutusAssets/founder_image_1.png'
 import { motion, AnimatePresence } from 'framer-motion'
-import { fetchFounderImages } from '../../utils/api'
+import { fetchFounderImages, fetchFounderTexts } from '../../utils/api'
 
 interface FounderImage {
   id: number
@@ -19,6 +19,7 @@ interface ApiResponse {
 const FounderJourney: React.FC = () => {
   const [awardImages, setAwardImages] = useState<FounderImage[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [founderTexts, setFounderTexts] = useState<string[]>([])
 
   useEffect(() => {
     const getAwardImages = async () => {
@@ -43,6 +44,22 @@ const FounderJourney: React.FC = () => {
     }
   }, [awardImages])
 
+  useEffect(() => {
+    const getFounderTexts = async () => {
+      try {
+        const textData = await fetchFounderTexts()
+        if (textData?.docs?.length) {
+          const texts = textData.docs.map((doc: { paragraph: string }) => doc.paragraph)
+          setFounderTexts(texts)
+        }
+      } catch (error) {
+        console.error('Error fetching founder texts:', error)
+      }
+    }
+
+    getFounderTexts()
+  }, [])
+
   return (
     <div
       style={{
@@ -63,21 +80,11 @@ const FounderJourney: React.FC = () => {
               Our Founder’s Journey – Dr. Milind Deore
             </h2>
 
-            <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px] mt-4">
-              Dr. Milind Deore, a veterinarian with a Ph.D. in Pharmacology & Toxicology, is a
-              globally recognized expert with 35+ years of experience in academia and the
-              pharmaceutical industry. Apart from Ph.D. in Toxicology, he is also Diplomate of
-              American Board of Toxicology (DABT) since 2010 and also a European Registered
-              Toxicologist (ERT). His journey began with a passion for science and safety, leading
-              him to work with industry giants like Ranbaxy, Johnson & Johnson, and Kenvue, where he
-              played a key role in global safety assessments, regulatory compliance, and
-              toxicological risk evaluations. Prior, he was in academics for over 15 years where he
-              was instrumental in teaching and research in Toxicology which enabled to present is
-              work in over 25 national/international conferences along with being recognized as best
-              Teacher in the university and a National award for his Ph.D. Recently he was
-              recognized as Distinguished Pharmacologist and Toxicologist in India by Indian Society
-              of Pharmacology & Toxicology.
-            </p>
+            {founderTexts[0] && (
+              <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px] mt-4">
+                {founderTexts[0]}
+              </p>
+            )}
           </div>
 
           {/* Right Image - Static Image */}
@@ -130,17 +137,11 @@ const FounderJourney: React.FC = () => {
           </div>
 
           <div>
-            <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px]">
-              Driven by the mission to provide scientifically sound and regulatory-compliant
-              toxicology solutions, Dr. Deore founded ToxRemedies. His deep expertise spans
-              pharmaceuticals, cosmetics, medical devices, food, and general chemicals, making him a
-              trusted authority in global toxicology regulations (US FDA, EU Cosmetics, EMA, ANVISA,
-              China CSAR, ASEAN, MDR, TGA). With 90+ scientific publications, multiple industry
-              awards, and international collaborations, Dr. Deore continues to lead the field,
-              helping businesses ensure product safety, compliance, and innovation. His legacy is
-              built on science, integrity, and a commitment to advancing toxicology for a safer
-              world.
-            </p>
+            {founderTexts[1] && (
+              <p className="text-[#272727] font-light tracking-wide leading-8 text-[14px] sm:text-[15px]">
+                {founderTexts[1]}
+              </p>
+            )}
           </div>
         </div>
       </section>
