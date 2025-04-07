@@ -70,7 +70,7 @@ const ExpertiseSection = () => {
               {item.title}
             </h3>
             <span className="border-[0.5px] border-[#BCBDBF] w-10 transition-all duration-500 group-hover:border-white"></span>
-            <ul className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[14px] max-w-[250px] transition-all duration-500 group-hover:text-white list-disc list-inside space-y-1">
+            <ul className="text-gray-600 mt-2 text-[12px] sm:text-[13px] md:text-[12px] max-w-[250px] transition-all duration-500 group-hover:text-white list-disc list-inside space-y-1 text-left">
               {item.description.map((desc, idx) => (
                 <li key={idx}>{desc.point}</li>
               ))}
