@@ -52,38 +52,46 @@ const ServicesSection = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:[&>:last-child]:col-span-2 sm:[&>:last-child]:mx-auto">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="bg-gradient-to-b from-[#E6F8FF] to-[#E9FFE6] p-5 sm:p-6 rounded-3xl"
-          >
-            <div className="relative w-full h-[200px] sm:h-[250px] rounded-2xl overflow-hidden">
-              <Image src={service.image.url} alt={service.title} layout="fill" objectFit="cover" />
-            </div>
-            <h3 className="mt-3 sm:mt-4 text-lg sm:text-[22px] font-medium text-[#181818] border-b-2 border-[#FFFFFF] tracking-wider pb-2">
-              {service.title}
-            </h3>
+        {services
+          .slice()
+          .reverse()
+          .map((service, index) => (
+            <div
+              key={index}
+              className="bg-gradient-to-b from-[#E6F8FF] to-[#E9FFE6] p-5 sm:p-6 rounded-3xl"
+            >
+              <div className="relative w-full h-[200px] sm:h-[250px] rounded-2xl overflow-hidden">
+                <Image
+                  src={service.image.url}
+                  alt={service.title}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <h3 className="mt-3 sm:mt-4 text-lg sm:text-[22px] font-medium text-[#181818] border-b-2 border-[#FFFFFF] tracking-wider pb-2">
+                {service.title}
+              </h3>
 
-            <ul className="mt-3 space-y-2 text-sm text-gray-700">
-              {service.description.slice(0, 3).map((point, i) => (
-                <li key={i} className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <Image src={tickIcon} alt="Tick" width={12} height={12} />
-                    <span className="tracking-wide text-[13px]">{point.point}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 flex justify-center">
-              <button
-                onClick={() => setSelectedService(service)}
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-[#0D94CD] text-white flex items-center justify-center rounded-full hover:bg-[#086d9a] transition"
-              >
-                <FaArrowRight className="font-normal" size={14} />
-              </button>
+              <ul className="mt-3 space-y-2 text-sm text-gray-700">
+                {service.description.slice(0, 3).map((point, i) => (
+                  <li key={i} className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <Image src={tickIcon} alt="Tick" width={12} height={12} />
+                      <span className="tracking-wide text-[13px]">{point.point}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 flex justify-center">
+                <button
+                  onClick={() => setSelectedService(service)}
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-[#0D94CD] text-white flex items-center justify-center rounded-full hover:bg-[#086d9a] transition"
+                >
+                  <FaArrowRight className="font-normal" size={14} />
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <AnimatePresence>
