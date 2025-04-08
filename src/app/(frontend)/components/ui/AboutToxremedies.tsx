@@ -20,18 +20,18 @@ const AboutToxRemedies = () => {
             About ToxRemedies
           </h2>
           <p className="text-[#272727] font-light tracking-wide mb-2 leading-7 text-[14px] sm:text-[15px]">
-            ToxRemedies is a specialized Toxicology Consultancy founded by Dr Milind Deore who has
-            over 35 years of experience and expertise in the Toxicology field. He is an American
+            ToxRemedies is a specialized Toxicology Consultancy firm founded by Dr Milind Deore who
+            has over 35 years of experience and expertise in the Toxicology field. He is an American
             board-certified toxicologist (DABT) and also a European Registered Toxicologist (ERT).
             ToxRemedies is formed to carry out risk assessments on chemicals and products coming
             from industries like Pharmaceuticals, Consumer & Cosmetics, Medical Devices, and Food
             /Food products’ areas. Apart from human health, ToxRemedies also provides consultancy on
-            Environmental through ERA (Environmental Risk Assessment). ToxRemedies can also play an
-            advisory role in setting up Toxicology units in India that are not only cost-effective
-            but equally efficient as compared to global standards. ToxRemedies can also provide
-            Toxicology strategies for end-to-end product development and help in regulatory
-            submissions. The experts can also help in creating digital tools for Toxicology risk
-            assessments, which is a fast-growing demand.
+            Environmental Safety through ERA (Environmental Risk Assessment). ToxRemedies can also
+            play an advisory role in setting up Toxicology units in India that are not only
+            cost-effective but equally efficient as compared to global standards. ToxRemedies can
+            also provide Toxicology strategies for end-to-end product development and help in
+            regulatory submissions. The experts can also help in creating digital tools for
+            Toxicology risk assessments, which is a fast-growing demand.
           </p>
         </div>
 

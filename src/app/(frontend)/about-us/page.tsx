@@ -22,7 +22,7 @@ export default function AboutUsPage() {
       <FeaturedPublications />
       <Testimonials />
       <FAQSection />
-      <AboutContactDoctor />
+      {/* <AboutContactDoctor /> */}
       <Footer />
     </>
   )

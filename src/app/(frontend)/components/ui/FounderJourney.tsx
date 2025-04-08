@@ -126,12 +126,12 @@ const FounderJourney: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            <p className="mt-4 text-[#272727] text-[16px] font-light tracking-wide">
+            {/* <p className="mt-4 text-[#272727] text-[16px] font-light tracking-wide">
               Want to learn more?{' '}
               <a href="#" className="text-[#0D94CD] hover:text-blue-600">
                 Connect with us at ToxRemedies!
               </a>
-            </p>
+            </p> */}
           </div>
 
           <div>
