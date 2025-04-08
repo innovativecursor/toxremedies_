@@ -19,9 +19,9 @@ const WhyUs = () => {
 
         {/* Left Content - Fully Responsive */}
         <div className="max-w-lg mx-auto text-center md:text-left md:w-[55%] flex flex-col items-center md:items-start">
-          <div className="bg-black text-white px-6 py-3 rounded-full text-sm shadow-md mb-4 sm:text-[14px] sm:px-8">
+          {/* <div className="bg-black text-white px-6 py-3 rounded-full text-sm shadow-md mb-4 sm:text-[14px] sm:px-8">
             Why Us
-          </div>
+          </div> */}
 
           <h2 className="text-3xl md:text-5xl font-medium text-gray-900 mb-4 sm:text-2xl">
             Why ToxRemedies?
@@ -43,7 +43,7 @@ const WhyUs = () => {
                 className="flex-shrink-0"
               />
               <span className="text-[16px] text-left md:whitespace-nowrap sm:text-[14px]">
-                {`Unmatched Expertise "In Toxicology (PhD, DABT, and ERT credentials)"`}
+                {`Thorough Expertise In Toxicology (PhD, DABT, and ERT credentials)`}
               </span>
             </li>
             <hr className="border-gray-300" />

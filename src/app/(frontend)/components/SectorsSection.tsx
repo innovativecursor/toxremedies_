@@ -42,7 +42,7 @@ const SectorsSection = () => {
         {sectors.map((sector, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center justify-center p-6 border-[0.5px] border-[#CECECE] rounded-2xl shadow cursor-pointer h-[255px] 
+            className="flex flex-col items-center justify-center p-6 border-[0.5px] border-[#CECECE] rounded-2xl shadow h-[255px] 
             bg-transparent text-[#181818] transition-all duration-75 ease-in-out"
             whileHover={{
               backgroundColor: '#0D94CD',

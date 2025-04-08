@@ -18,7 +18,7 @@ const Footer = () => {
                 className="w-44"
               />
               <p className="text-sm text-[#404040] font-light leading-relaxed">
-                Dr. Milind Deore is a seasoned toxicologist specializing in risk assessment across
+                Dr. Milind Deore is a seasoned toxicologist specialised in risk assessment across
                 pharmaceuticals, cosmetics, medical devices, and more. With a commitment to
                 advancing safety standards, he offers expert consulting services to ensure product
                 compliance and consumer well-being.
@@ -31,7 +31,7 @@ const Footer = () => {
                 </h4>
                 <ul className="space-y-3 text-sm text-[#181818] font-light">
                   <li className="hover:text-[#0D94CD] cursor-pointer">Home</li>
-                  <li className="hover:text-[#0D94CD] cursor-pointer">About Me</li>
+                  <li className="hover:text-[#0D94CD] cursor-pointer">About Us</li>
                   <li className="hover:text-[#0D94CD] cursor-pointer">Expertise</li>
                   <li className="hover:text-[#0D94CD] cursor-pointer">Services</li>
                   <li className="hover:text-[#0D94CD] cursor-pointer">Contact</li>
