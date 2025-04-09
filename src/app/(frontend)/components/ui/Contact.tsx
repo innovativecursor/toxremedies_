@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { FaEnvelope, FaMapMarkerAlt, FaGlobe, FaPhoneAlt } from 'react-icons/fa'
 import Image from 'next/image'
 import contact from '../../public/assets/contactAssets/contact_image.png'
+import { submitContactForm } from '../../utils/api'
+import { showToast } from './Toaster'
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,9 +20,25 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    setLoading(true)
+
+    try {
+      await submitContactForm(formData)
+
+      showToast('Message sent successfully!', 'success')
+
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' }) // Reset form
+    } catch (err) {
+      if ((err as Error).message.includes('already been used')) {
+        showToast('This email or phone number is already registered!', 'error')
+      } else {
+        showToast('Failed to send message. Please try again later.', 'error')
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   const [loading, setLoading] = useState(false)

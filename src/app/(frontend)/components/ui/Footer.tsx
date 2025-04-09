@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa'
 import footerImage from '../../public/assets/toxremedies_logo.png'
 import logo from '../../public/assets/footerAssets/innocursor.svg'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -30,11 +31,43 @@ const Footer = () => {
                   QUICK LINKS
                 </h4>
                 <ul className="space-y-3 text-sm text-[#181818] font-light">
-                  <li className="hover:text-[#0D94CD] cursor-pointer">Home</li>
-                  <li className="hover:text-[#0D94CD] cursor-pointer">About Us</li>
-                  <li className="hover:text-[#0D94CD] cursor-pointer">Expertise</li>
-                  <li className="hover:text-[#0D94CD] cursor-pointer">Services</li>
-                  <li className="hover:text-[#0D94CD] cursor-pointer">Contact</li>
+                  <li>
+                    <Link href="/" className="hover:text-[#0D94CD] transition-colors duration-200">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/about-us"
+                      className="hover:text-[#0D94CD] transition-colors duration-200"
+                    >
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/expertise"
+                      className="hover:text-[#0D94CD] transition-colors duration-200"
+                    >
+                      Expertise
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/services"
+                      className="hover:text-[#0D94CD] transition-colors duration-200"
+                    >
+                      Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/contact"
+                      className="hover:text-[#0D94CD] transition-colors duration-200"
+                    >
+                      Contact
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className="space-y-4">
