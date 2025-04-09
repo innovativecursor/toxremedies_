@@ -29,7 +29,7 @@ const Hero = () => {
             IN SERVICE OF HUMAN AND ENVIRONMENTAL HEALTH
           </p>
 
-          <ScheduleMeetingButton text=" Schedule a Consultation" />
+          {/* <ScheduleMeetingButton text=" Schedule a Consultation" /> */}
         </div>
 
         {/* Right Image - Visible only on Desktop */}

@@ -46,7 +46,7 @@ const ContactSection = () => {
 
   return (
     <div className="flex justify-center w-full px-4 sm:px-6 md:px-8">
-      <section className="max-w-7xl py-16 sm:py-20">
+      <section className="max-w-7xl py-16 sm:py-20" id="contact">
         <div className="flex flex-col-reverse lg:flex-row items-stretch w-full gap-8 lg:gap-4">
           {/* Left Side - Contact Form & Info */}
 

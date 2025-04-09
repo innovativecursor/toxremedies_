@@ -64,7 +64,11 @@ const Navbar = () => {
 
         {/* Call to Action Button (Desktop) */}
 
-        <GetConsultationButton text="Get a Consultation" className="hidden md:block" />
+        <GetConsultationButton
+          text="Get a Consultation"
+          scrollToId="contact"
+          className="hidden md:block"
+        />
 
         {/* Mobile Menu Button (Right-Aligned) */}
         <button className="md:hidden ml-auto" onClick={() => setIsOpen(true)}>
