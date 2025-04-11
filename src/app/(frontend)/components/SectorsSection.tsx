@@ -20,6 +20,26 @@ const sectors = [
 ]
 
 const SectorsSection = () => {
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15, // delay between each item
+      },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  }
   return (
     <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-white/20 to-[#F0FFD0]/20 text-center">
       <div className="max-w-7xl mx-auto">
@@ -38,12 +58,19 @@ const SectorsSection = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-10">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+      >
         {sectors.map((sector, index) => (
           <motion.div
             key={index}
+            variants={cardVariants}
             className="flex flex-col items-center justify-center p-6 border-[0.5px] border-[#CECECE] rounded-2xl shadow h-[255px] 
-            bg-transparent text-[#181818] transition-all duration-75 ease-in-out"
+        bg-transparent text-[#181818] transition-all duration-75 ease-in-out"
             whileHover={{
               backgroundColor: '#0D94CD',
               color: '#FFFFFF',
@@ -62,7 +89,7 @@ const SectorsSection = () => {
             </p>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

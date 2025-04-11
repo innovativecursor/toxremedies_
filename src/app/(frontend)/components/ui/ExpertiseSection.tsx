@@ -30,7 +30,13 @@ const ExpertiseSection = () => {
   return (
     <section className="max-w-[95%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-7xl xl:max-w-full 2xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-4 2xl:px-0 py-16">
       {/* Header Section */}
-      <div className="text-left">
+      <motion.div
+        className="text-left"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false, amount: 0.2 }}
+      >
         <button className="bg-black text-white px-5 py-2 rounded-full font-light text-[12px] sm:text-[14px] lg:text-[15px]">
           Our Expertise
         </button>
@@ -44,7 +50,7 @@ const ExpertiseSection = () => {
           devices, food products, and consumer goods. With decades of experience, we provide
           scientifically backed, regulatory-compliant, and innovative toxicology solutions.
         </p>
-      </div>
+      </motion.div>
 
       {/* Expertise Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
@@ -55,6 +61,10 @@ const ExpertiseSection = () => {
             <motion.div
               key={index}
               className="group p-6 border border-gray-200 rounded-2xl shadow-none flex flex-col items-center text-center transition-all duration-500 hover:bg-[#0D94CD]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{
                 boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.1)',
                 scale: 1.05,

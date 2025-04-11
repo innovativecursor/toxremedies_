@@ -3,10 +3,33 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 import contact from '../public/assets/contactAssets/contact_image.png'
 import { submitContactForm } from '../utils/api'
 import { showToast } from './ui/Toaster'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: 'easeOut',
+    },
+  },
+}
+
+const containerStagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+}
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -29,9 +52,7 @@ const ContactSection = () => {
 
     try {
       await submitContactForm(formData)
-
       showToast('Message sent successfully!', 'success')
-
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' }) // Reset form
     } catch (err) {
       if ((err as Error).message.includes('already been used')) {
@@ -48,10 +69,14 @@ const ContactSection = () => {
     <div className="flex justify-center w-full px-4 sm:px-6 md:px-8">
       <section className="max-w-7xl py-16 sm:py-20" id="contact">
         <div className="flex flex-col-reverse lg:flex-row items-stretch w-full gap-8 lg:gap-4">
-          {/* Left Side - Contact Form & Info */}
-
           {/* Right Side - Contact Info & Image */}
-          <div className="w-full lg:w-[550px] flex flex-col items-start">
+          <motion.div
+            className="w-full lg:w-[550px] flex flex-col items-start"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+          >
             <button className="bg-black text-white px-6 py-3 rounded-full font-light tracking-wider text-sm shadow-md mb-4 sm:text-[14px] sm:px-8">
               Make Appointment
             </button>
@@ -69,12 +94,21 @@ const ContactSection = () => {
               alt="Consultation"
               className="mt-4 rounded-lg w-full sm:h-[400px] md:h-[525px] object-cover"
             />
-          </div>
-          <div className="flex-1 lg:pr-6">
+          </motion.div>
+
+          {/* Left Side - Form + Info */}
+          <motion.div
+            className="flex-1 lg:pr-6"
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+          >
             {/* Contact Form */}
-            <form
+            <motion.form
               onSubmit={handleSubmit}
               className="bg-white shadow-xl rounded-[36px] p-6 sm:p-8 md:p-10 w-full h-auto lg:h-[565px]"
+              variants={fadeUp}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input
@@ -130,10 +164,13 @@ const ContactSection = () => {
               >
                 {loading ? 'Sending...' : 'Send Message'}
               </button>
-            </form>
+            </motion.form>
 
             {/* Contact Info Section */}
-            <div className="bg-[#0D94CD] text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-4 p-6 rounded-lg mt-8 w-full h-auto md:h-[160px]">
+            <motion.div
+              className="bg-[#0D94CD] text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-4 p-6 rounded-lg mt-8 w-full h-auto md:h-[160px]"
+              variants={fadeUp}
+            >
               <div className="flex flex-col items-start">
                 <div className="bg-white p-2 rounded-full">
                   <FaEnvelope size={15} className="text-[#0D94CD]" />
@@ -157,8 +194,8 @@ const ContactSection = () => {
                   Tower A/53, Atlantis CHS, Kashish Park, LBS Road, Thane West, India 400604
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

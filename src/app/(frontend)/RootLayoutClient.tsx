@@ -25,7 +25,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
   useEffect(() => {
     setLoading(true) // Show loader
-    const timer = setTimeout(() => setLoading(false), 1000) // Fake delay for UX
+    const timer = setTimeout(() => setLoading(false), 600) // Fake delay for UX
 
     return () => clearTimeout(timer)
   }, [pathname]) // Run on route change
