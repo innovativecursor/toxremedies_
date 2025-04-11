@@ -109,11 +109,19 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
         <div className="border-t border-gray-300 font-light w-full py-4 flex flex-col md:flex-row items-center justify-center md:justify-between text-sm text-gray-600 px-4 sm:px-8 md:px-16 gap-4 md:gap-0 text-center md:text-left">
           <p>© 2025 Dr. Milind D. Deore. All rights reserved.</p>
-          <div className="bg-blue-500 text-white p-2 rounded-full hover:bg-[#0D94CD] cursor-pointer">
+
+          <Link
+            href="https://www.linkedin.com/in/milind-deore-7009a517/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-500 text-white p-2 rounded-full hover:bg-[#0D94CD] cursor-pointer"
+          >
             <FaLinkedin size={18} />
-          </div>
+          </Link>
+
           <p className="flex items-center gap-2">
             Designed by
             <Image src={logo} width={20} height={20} alt="innovative cursor" />

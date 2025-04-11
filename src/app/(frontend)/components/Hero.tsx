@@ -6,7 +6,7 @@ import ScheduleMeetingButton from './ui/ScheduleMeetingButton'
 const Hero = () => {
   return (
     <section
-      className="relative h-screen px-6 md:px-10 pt-32 flex items-center justify-center"
+      className="relative h-[80vh] md:h-screen lg:h-screen px-6 md:px-10 pt-32 flex items-center justify-center"
       style={{
         background: 'linear-gradient(260.13deg, #F8FFEB 20.11%, #D9F4FF 46.52%, #F4FFDC 102.3%)',
       }}

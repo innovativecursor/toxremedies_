@@ -44,7 +44,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(false)
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-10 md:px-6">
+    <section className="max-w-7xl mx-auto px-4 py-10 md:px-6" id="contact-form">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <motion.div
           className="bg-white p-6 sm:p-10 rounded-xl shadow-xl w-full"

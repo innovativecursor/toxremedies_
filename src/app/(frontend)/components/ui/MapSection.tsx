@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FaLinkedin } from 'react-icons/fa'
 
 const MapSection = () => {
@@ -42,10 +43,15 @@ const MapSection = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Follow Us on Social Media</h3>
-              <div className="flex items-center gap-2 text-gray-700">
+              <Link
+                href="https://www.linkedin.com/in/milind-deore-7009a517/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-700 hover:text-[#0D94CD] transition-colors duration-200"
+              >
                 <FaLinkedin className="text-xl" />
                 <span className="text-sm">LinkedIn</span>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

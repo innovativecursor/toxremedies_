@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { IoMdClose } from 'react-icons/io'
+
+import { IoMdClose, IoMdMenu } from 'react-icons/io'
 import GetConsultationButton from './ui/GetConsultationButton'
 
 const navList = {
@@ -72,7 +72,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button (Right-Aligned) */}
         <button className="md:hidden ml-auto" onClick={() => setIsOpen(true)}>
-          <GiHamburgerMenu size={32} className="text-blue-600" />
+          <IoMdMenu size={28} className="text-[#0D94CD]" />
         </button>
       </div>
 
@@ -90,11 +90,11 @@ const Navbar = () => {
         animate={isOpen ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
         exit={{ x: '100%', opacity: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut' }} // 🌟 Smooth closing effect
-        className={`fixed top-0 right-0 w-64 h-full bg-gradient-to-t from-purple-700 to-blue-800 shadow-lg z-50 flex flex-col p-6`}
+        className={`fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 flex flex-col p-6`}
       >
         {/* Close Button */}
         <button className="self-end mb-6" onClick={() => setIsOpen(false)}>
-          <IoMdClose size={32} className="text-white" />
+          <IoMdClose size={32} className="text-[#0D94CD]" />
         </button>
 
         {/* Mobile Navigation Links */}
@@ -116,7 +116,7 @@ const Navbar = () => {
               key={index}
               variants={navItem}
               whileHover={{ scale: 1.05 }}
-              className="cursor-pointer"
+              className="cursor-pointer text-[#0D94CD] hover:text-[#0D94CD]"
               onClick={() => setIsOpen(false)}
             >
               <Link href={item.link}>{item.name}</Link>
@@ -126,7 +126,7 @@ const Navbar = () => {
 
         {/* Call to Action Button (Mobile) */}
         <motion.button
-          className="mt-10 bg-white text-blue-600 px-5 py-2 rounded-full shadow-md hover:bg-gray-200 transition"
+          className="mt-8 bg-[#0D94CD] text-white px-4 py-4 rounded-full shadow-md hover:bg-[#0978a3] transition"
           whileHover={{ scale: 1.05 }}
           onClick={() => setIsOpen(false)}
         >

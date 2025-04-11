@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import whyus from '../public/assets/whyUsAssets/why_us_image.png'
 import checkIcon from '../public/assets/whyUsAssets/tick_mark.png' // Import the checkmark image
@@ -75,7 +77,13 @@ const WhyUs = () => {
           </ul>
 
           {/* Button - Responsive size */}
-          <button className="mt-6 bg-[#0D94CD] text-white px-10 py-3 rounded-[50px] text-[15px] transition hover:bg-[#000000] cursor-pointer font-normal sm:px-10 sm:py-4 sm:text-[15px]">
+          <button
+            onClick={() => {
+              const el = document.getElementById('contact')
+              el?.scrollIntoView({ behavior: 'smooth' })
+            }}
+            className="mt-6 bg-[#0D94CD] text-white px-10 py-3 rounded-[50px] text-[15px] transition hover:bg-[#000000] cursor-pointer font-normal sm:px-10 sm:py-4 sm:text-[15px]"
+          >
             Get in Touch
           </button>
         </div>

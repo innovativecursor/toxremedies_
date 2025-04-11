@@ -7,7 +7,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import logo from '../../public/assets/tox_remedies_nav.png'
-import { GiHamburgerMenu } from 'react-icons/gi'
+
+import { IoMdClose } from 'react-icons/io'
 
 const NavBarOthers = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -89,10 +90,7 @@ const NavBarOthers = () => {
 
       {/* Overlay for Mobile Menu */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setIsOpen(false)}
-        ></div>
+        <div className="fixed inset-0 bg-opacity-50 z-40" onClick={() => setIsOpen(false)}></div>
       )}
 
       {/* Mobile Navigation Menu */}
@@ -105,7 +103,7 @@ const NavBarOthers = () => {
       >
         {/* Close Button */}
         <button className="self-end mb-6" onClick={() => setIsOpen(false)}>
-          <GiHamburgerMenu size={28} className="text-blue-600" />
+          <IoMdClose size={28} className="text-[#0D94CD]" />
         </button>
 
         {/* Mobile Navigation Links */}
