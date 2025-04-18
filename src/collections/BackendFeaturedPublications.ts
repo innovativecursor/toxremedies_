@@ -23,23 +23,34 @@ export const BackendFeaturedPublications: CollectionConfig = {
     {
       name: 'user',
       type: 'relationship',
-      relationTo: 'users', // Assuming "users" is the user collection slug
+      relationTo: 'users',
       required: true,
       label: 'Uploaded By',
     },
     {
       name: 'publicationImage',
       type: 'upload',
-      relationTo: 'media', // Assuming media collection handles images
+      relationTo: 'media',
       required: true,
       label: 'Publication Cover Image',
     },
     {
       name: 'pdf',
       type: 'upload',
-      relationTo: 'media', // Assuming media collection handles files
+      relationTo: 'media',
       required: true,
       label: 'Publication PDF',
+    },
+    {
+      name: 'publicationDate',
+      type: 'date',
+      required: true,
+      label: 'Publication Date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayOnly',
+        },
+      },
     },
   ],
 }
