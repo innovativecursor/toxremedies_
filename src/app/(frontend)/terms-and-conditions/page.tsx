@@ -70,8 +70,8 @@ export default function TermsAndConditionsPage() {
             <p className="mt-1 flex items-center space-x-2">
               For inquiries, feedback, or service questions: <br />
               <MdEmail className="ml-2 text-[#0D94CD]" />{' '}
-              <a href="mailto:info@drmilinddeore.com" className="text-[#0D94CD] hover:underline">
-                info@drmilinddeore.com
+              <a href="mailto:mdeore61@gmail.com" className="text-[#0D94CD] hover:underline">
+                mdeore61@gmail.com
               </a>
             </p>
           </div>
