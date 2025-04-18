@@ -13,6 +13,7 @@ interface Publication {
   publicationImage: { url: string }
   pdf: { url: string }
   createdAt: string
+  publicationDate?: string // <-- New field added
 }
 
 const FeaturedPublications: React.FC = () => {
@@ -36,15 +37,14 @@ const FeaturedPublications: React.FC = () => {
     getPublications()
   }, [])
 
-  // Dynamically adjust number of visible items
   useEffect(() => {
     const updateItemsPerView = () => {
       if (window.innerWidth < 640) {
-        setItemsPerView(1) // Mobile: Show 1 item
+        setItemsPerView(1)
       } else if (window.innerWidth < 1024) {
-        setItemsPerView(2) // Tablet: Show 2 items
+        setItemsPerView(2)
       } else {
-        setItemsPerView(3) // Desktop: Show 3 items
+        setItemsPerView(3)
       }
     }
 
@@ -112,7 +112,10 @@ const FeaturedPublications: React.FC = () => {
                 />
 
                 <p className="text-gray-500 text-sm mt-4">
-                  Date: {new Date(pub.createdAt).toLocaleDateString()}
+                  Date:{' '}
+                  {pub.publicationDate
+                    ? new Date(pub.publicationDate).toLocaleDateString()
+                    : new Date(pub.createdAt).toLocaleDateString()}
                 </p>
 
                 <h3 className="text-lg font-medium text-[#181818] mt-2 truncate max-w-full">
@@ -146,7 +149,7 @@ const FeaturedPublications: React.FC = () => {
 
             <button
               onClick={nextSlide}
-              disabled={currentIndex >= publications.length - itemsPerView} // Updated condition
+              disabled={currentIndex >= publications.length - itemsPerView}
               className={`px-4 py-2 bg-gray-800 text-white font-medium ${
                 currentIndex >= publications.length - itemsPerView
                   ? 'opacity-50 cursor-not-allowed'
